@@ -1,3 +1,10 @@
+package animal;
+
+import jeu.Aliment;
+import jeu.Direction;
+import jeu.Piece;
+import jeu.TypeAliment;
+
 import java.util.Set;
 import java.util.Iterator;
 import java.util.ArrayList;
@@ -173,7 +180,7 @@ public abstract class AbstractAnimal implements Animal {
 		if (!estVivant())
 			throw new IllegalStateException("L'animal doit etre vivant\n");
 		if (!(p.contientAnimal(this)))
-			throw new IllegalArgumentException("L'animal ne se trouve pas dans la piece spécifiée.\n Piece specifiee : " + p.getNom() + " Piece du chien : " + this.getPieceCourante().getNom());
+			throw new IllegalArgumentException("L'animal ne se trouve pas dans la piece spécifiée.\n jeu.Piece specifiee : " + p.getNom() + " jeu.Piece du chien : " + this.getPieceCourante().getNom());
 		if (choisirSortie(p) == null)
 			return null;
 		if (!(estVivant() && p.contientAnimal(this)))

@@ -1,3 +1,5 @@
+package jeu;
+
 public class zorkfr {
 
     public static void main(String[] args) {

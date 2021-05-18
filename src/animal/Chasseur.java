@@ -1,3 +1,7 @@
+package animal;
+
+import jeu.Piece;
+
 import java.util.Set;
 
 public interface Chasseur extends Animal {

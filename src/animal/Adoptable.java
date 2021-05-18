@@ -1,3 +1,8 @@
+package animal;
+
+import jeu.Direction;
+import jeu.Piece;
+
 public interface Adoptable extends Animal {
 
 	boolean estLibre();

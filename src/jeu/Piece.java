@@ -1,3 +1,8 @@
+package jeu;
+
+import animal.Animal;
+import animal.Chien;
+
 import java.util.Map;
 import java.util.HashMap;
 import java.util.ArrayList;

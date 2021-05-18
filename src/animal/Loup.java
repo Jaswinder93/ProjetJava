@@ -1,3 +1,9 @@
+package animal;
+
+import jeu.Aliment;
+import jeu.Piece;
+import jeu.TypeAliment;
+
 import java.util.Set;
 import java.util.ArrayList;
 import java.util.*;

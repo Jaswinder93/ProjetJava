@@ -1,3 +1,7 @@
+package jeu;
+
+import animal.*;
+
 import java.util.Map;
 import java.util.HashMap;
 import java.util.ArrayList;
@@ -565,7 +569,7 @@ public class Jeu {
 				if(joueur.getChienAdoptableVoulu().getPieceCourante().equals(joueur.getPieceCourante()) && !(joueur.contientChienDeCeNom(joueur.getChienAdoptableVoulu()))) {
 					joueur.adopterChien(joueur.getChienAdoptableVoulu());
 					joueur.setChienAdoptableVoulu(null);
-					System.out.println("Chien adopte avec succes.");
+					System.out.println("animal.Chien adopte avec succes.");
 					a = 1;
 					ajouterChiensDuJoueur(joueur, pieceCourante);
 					suiteActionJoueur();
@@ -589,7 +593,7 @@ public class Jeu {
 					ajouterChiensDuJoueur(joueur, pieceCourante);
 					joueur.libererChien(joueur.getChienLiberable());
 					joueur.setChienLiberable(null);
-					System.out.println("Chien libere avec succes.");
+					System.out.println("animal.Chien libere avec succes.");
 					suiteActionJoueur();
 					return;
 				} else

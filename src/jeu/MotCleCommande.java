@@ -1,3 +1,5 @@
+package jeu;
+
 public class MotCleCommande {
 
 	private final static String[] commandesValides = {"aller", "quitter", "aide", "plan", "prendre", "poser", "adopter", "liberer"};

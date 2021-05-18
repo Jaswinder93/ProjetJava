@@ -1,4 +1,10 @@
-import java.util.ArrayList;
+package animal;
+
+import animal.AbstractAnimal;
+import jeu.Direction;
+import jeu.Joueur;
+import jeu.Piece;
+import jeu.TypeAliment;
 
 public class Chien extends AbstractAnimal implements Adoptable {
 	private boolean adoptable;

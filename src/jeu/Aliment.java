@@ -1,3 +1,5 @@
+package jeu;
+
 public class Aliment extends ObjetZork {
 
 	private final int valeur;

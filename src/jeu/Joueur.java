@@ -1,3 +1,7 @@
+package jeu;
+
+import animal.Chien;
+
 import java.util.ArrayList;
 
 public class Joueur extends Container<ObjetZork> {
@@ -14,12 +18,6 @@ public class Joueur extends Container<ObjetZork> {
 	public static final int max_poids_total = 700;
 
 /*=====================================CONSTRUCTEURS========================================*/
-
-	public Joueur(Piece pieceCourante) {
-		super();
-		this.pieceCourante = pieceCourante;
-		chiens = new ArrayList<>();
-	}
 
 	public Joueur(){
 		super();

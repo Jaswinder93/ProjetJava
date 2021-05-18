@@ -20,32 +20,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6f09b0c1-9b71-4a00-b9d6-e84b4fee9357" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/Kanji.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AbstractAnimal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AbstractAnimal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Adoptable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Adoptable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Aliment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Aliment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AnalyseurSyntaxique.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AnalyseurSyntaxique.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Animal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Chasseur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chasseur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Chevre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chevre.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Chien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chien.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Commande.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commande.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Container.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Container.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Direction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Direction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EffetObjetZork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/EffetObjetZork.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Jeu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Jeu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Joueur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Joueur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Loup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Loup.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MotCleCommande.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MotCleCommande.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ObjetZork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ObjetZork.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Piece.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TypeAliment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TypeAliment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/premierexempleswing.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/zorkfr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zorkfr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AbstractAnimal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/animal/AbstractAnimal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adoptable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/animal/Adoptable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Aliment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jeu/Aliment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AnalyseurSyntaxique.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jeu/AnalyseurSyntaxique.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/animal/Animal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chasseur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jeu/Chasseur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chevre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/animal/Chevre.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/animal/Chien.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Commande.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jeu/Commande.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Container.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jeu/Container.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Direction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jeu/Direction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/EffetObjetZork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jeu/EffetObjetZork.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Jeu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jeu/Jeu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Joueur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jeu/Joueur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Loup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/animal/Loup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MotCleCommande.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jeu/MotCleCommande.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ObjetZork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jeu/ObjetZork.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jeu/Piece.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TypeAliment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jeu/TypeAliment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zorkfr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jeu/zorkfr.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +79,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
@@ -96,7 +90,7 @@
   </component>
   <component name="RunManager">
     <configuration name="zorkfr" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="zorkfr" />
+      <option name="MAIN_CLASS_NAME" value="jeu.zorkfr" />
       <module name="Kanji" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -128,7 +122,7 @@
       <option name="presentableId" value="Default" />
       <updated>1621319652521</updated>
       <workItem from="1621319654724" duration="491000" />
-      <workItem from="1621321687322" duration="3473000" />
+      <workItem from="1621321687322" duration="3957000" />
     </task>
     <servers />
   </component>
@@ -156,25 +150,28 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="445" y="130" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1621324117162" />
-    <state width="1493" height="422" key="GridCell.Tab.0.bottom" timestamp="1621324944406">
+    <state width="1493" height="135" key="GridCell.Tab.0.bottom" timestamp="1621325564660">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="422" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1621324944406" />
-    <state width="1493" height="422" key="GridCell.Tab.0.center" timestamp="1621324944406">
+    <state width="1493" height="135" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1621325564660" />
+    <state width="1493" height="135" key="GridCell.Tab.0.center" timestamp="1621325564660">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="422" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1621324944406" />
-    <state width="1493" height="422" key="GridCell.Tab.0.left" timestamp="1621324944406">
+    <state width="1493" height="135" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1621325564660" />
+    <state width="1493" height="135" key="GridCell.Tab.0.left" timestamp="1621325564660">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="422" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1621324944406" />
-    <state width="1493" height="422" key="GridCell.Tab.0.right" timestamp="1621324944406">
+    <state width="1493" height="135" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1621325564660" />
+    <state width="1493" height="135" key="GridCell.Tab.0.right" timestamp="1621325564660">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="422" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1621324944406" />
-    <state x="249" y="0" key="SettingsEditor" timestamp="1621324119231">
+    <state width="1493" height="135" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1621325564660" />
+    <state x="249" y="0" key="SettingsEditor" timestamp="1621325232413">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1621324119231" />
+    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1621325232413" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Kanji$zorkfr.ic" NAME="zorkfr Coverage Results" MODIFIED="1621325424687" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

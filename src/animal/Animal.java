@@ -1,3 +1,10 @@
+package animal;
+
+import jeu.Aliment;
+import jeu.Direction;
+import jeu.Piece;
+import jeu.TypeAliment;
+
 import java.util.Set;
 
 public interface Animal extends Iterable<Aliment> {

@@ -1,4 +1,7 @@
-import java.util.ArrayList;
+package animal;
+
+import animal.AbstractAnimal;
+import jeu.TypeAliment;
 
 public class Chevre extends AbstractAnimal {
 
