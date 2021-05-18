@@ -1,6 +1,6 @@
 package jeu;
 
-public enum EffetObjetZork {
+public enum EffetObjetKanji {
 	MAGIQUE,
 	TUEUR,
 	NEUTRE

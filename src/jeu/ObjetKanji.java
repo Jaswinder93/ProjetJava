@@ -1,17 +1,17 @@
 package jeu;
 
-public class ObjetZork {
+public class ObjetKanji {
 
 	private String nom;
-	private EffetObjetZork effet;
+	private EffetObjetKanji effet;
 	private boolean transportable;
 	private int poids;
 	private Piece pieceCourante;
 	public static final int max_poids_objet = 100;
 
-	public ObjetZork(){}
+	public ObjetKanji(){}
 
-	public ObjetZork(String nom, EffetObjetZork effet, int poids, Piece pieceCourante) {
+	public ObjetKanji(String nom, EffetObjetKanji effet, int poids, Piece pieceCourante) {
 		if (nom == null || effet == null || pieceCourante == null)
 			throw new NullPointerException("Aucun argument ne doit valoir null");
 		if (poids <= 0)
@@ -22,21 +22,21 @@ public class ObjetZork {
 		this.pieceCourante = pieceCourante;
 	}
 
-	public ObjetZork(String nom, Piece pieceCourante) {
+	public ObjetKanji(String nom, Piece pieceCourante) {
 		if (nom == null || pieceCourante == null)
 			throw new NullPointerException("Aucun argument ne doit valoir null");
 		this.nom = nom;
 		this.pieceCourante = pieceCourante;
 		transportable = false;
 		poids = 5;
-		effet = EffetObjetZork.NEUTRE;
+		effet = EffetObjetKanji.NEUTRE;
 	}
 
 	public String getNom() {
 		return nom;
 	}
 
-	public EffetObjetZork getEffet() {
+	public EffetObjetKanji getEffet() {
 		return effet;
 	}
 
@@ -56,7 +56,7 @@ public class ObjetZork {
 		poids = newPoids;
 	}
 
-	public void setEffet(EffetObjetZork e) {
+	public void setEffet(EffetObjetKanji e) {
 		effet = e;
 	}
 

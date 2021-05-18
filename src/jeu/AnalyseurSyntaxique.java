@@ -17,13 +17,11 @@ public class AnalyseurSyntaxique {
 		String ligneEntree = "";
 		String mot1;
 		String mot2;
-        String mot3;
 
 		// affiche l'invite de commande
 		System.out.print("> ");
 
-		BufferedReader reader = new BufferedReader(new InputStreamReader(
-			System.in));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		try {
 			ligneEntree = reader.readLine();
 		} catch (java.io.IOException exc) {
@@ -44,12 +42,6 @@ public class AnalyseurSyntaxique {
 			mot2 = tokenizer.nextToken();
 		} else {
 			mot2 = null;
-		}
-        if (tokenizer.hasMoreTokens()) {
-			// recuperation du troisieme mot
-			mot3 = tokenizer.nextToken();
-		} else {
-			mot3 = null;
 		}
 
 		// note: le reste de la ligne est ignore.

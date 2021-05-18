@@ -4,7 +4,7 @@ import animal.Chien;
 
 import java.util.ArrayList;
 
-public class Joueur extends Container<ObjetZork> {
+public class Joueur extends Container<ObjetKanji> {
 
 	private Direction futur_dplct;
 	private Piece pieceCourante;
@@ -97,7 +97,7 @@ public class Joueur extends Container<ObjetZork> {
 /*=====================================PRISE ET POSE D'OBJETS========================================*/
 
 	@Override
-	public boolean ajoutPossible(ObjetZork oz) {
+	public boolean ajoutPossible(ObjetKanji oz) {
 		if (((getPoidsCourant() + oz.getPoids()) > max_poids_total))
 			System.out.println("Le poids total de vos objets a excede 700 grammes ! Veuillez poser une boite a effet neutre avant de prendre cet objet.\n");
 		if ((!oz.estTransportable()))
@@ -109,22 +109,22 @@ public class Joueur extends Container<ObjetZork> {
 	public void afficherObjets() {
 		System.out.println("Si vous en portez, voici vos boites : ");
 		if (!(getContenu().isEmpty())) {
-			for(ObjetZork oz : getContenu()) {
+			for(ObjetKanji oz : getContenu()) {
 				System.out.println("Nom : " + oz.getNom() + "; effet : " + oz.getEffet() + "; poids : " + oz.getPoids());
 			}
 		}
 		System.out.println();
 	}
 
-	public boolean prendreObjet(ObjetZork oz) {
+	public boolean prendreObjet(ObjetKanji oz) {
 		if (ajoutPossible(oz)){
 			ajouter(oz);
 			poidsCourant += oz.getPoids();
 			setPlusNbObjets(1);
-			if (oz.getEffet().equals(EffetObjetZork.MAGIQUE)) {
+			if (oz.getEffet().equals(EffetObjetKanji.MAGIQUE)) {
 				System.out.println("Ouf ! Vous venez de prendre une boite magique !");
 				nbBoitesMagiques++;
-			} else if(oz.getEffet().equals(EffetObjetZork.TUEUR)) {
+			} else if(oz.getEffet().equals(EffetObjetKanji.TUEUR)) {
 				System.out.println("Oups... Vous venez de prendre une boite poison.");
 				nbBoitesPoison++;
 			} else
@@ -136,8 +136,8 @@ public class Joueur extends Container<ObjetZork> {
 		}
 	}
 
-	public boolean poserObjet(ObjetZork oz) {
-		if ((contient(oz)) && oz.getEffet().equals(EffetObjetZork.NEUTRE)) {
+	public boolean poserObjet(ObjetKanji oz) {
+		if ((contient(oz)) && oz.getEffet().equals(EffetObjetKanji.NEUTRE)) {
 			poidsCourant -= oz.getPoids();
 			setMinusNbObjets(1);
 			retirer(oz);
@@ -193,7 +193,7 @@ public class Joueur extends Container<ObjetZork> {
 	}
 
 	@Override
-	public boolean retraitPossible(ObjetZork oz) {
+	public boolean retraitPossible(ObjetKanji oz) {
 		return contient(oz) && oz.estTransportable();
 	}
 

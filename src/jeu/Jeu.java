@@ -49,39 +49,39 @@ public class Jeu {
 		Piece grandChene = new Piece();
 
 		// creation des boites magiques
-		ObjetZork reve = new ObjetZork("reve", EffetObjetZork.MAGIQUE, 100, marecagesSud);
-		ObjetZork intuition = new ObjetZork("intuition", EffetObjetZork.MAGIQUE, 100, zonePuits);
-		ObjetZork secret = new ObjetZork("secret", EffetObjetZork.MAGIQUE, 100, cabane);
-		ObjetZork morphee = new ObjetZork("morphee", EffetObjetZork.MAGIQUE, 100, clairiereOuest);
-		ObjetZork grace = new ObjetZork("grace", EffetObjetZork.MAGIQUE, 100, marecagesNord);
-		ObjetZork magie = new ObjetZork("magie", EffetObjetZork.MAGIQUE, 100, lacNord);
-		ObjetZork diamant = new ObjetZork("diamant", EffetObjetZork.MAGIQUE, 200, clairiereEst);
-		ObjetZork joie = new ObjetZork("joie", EffetObjetZork.TUEUR, 100, lacSud);
-		ObjetZork purete = new ObjetZork("purete", EffetObjetZork.TUEUR, 100, riviere);
-		ObjetZork eclat = new ObjetZork("eclat", EffetObjetZork.TUEUR, 100, clairiereNord);
-		ObjetZork faveur = new ObjetZork("faveur", EffetObjetZork.TUEUR, 100, precipitations);
-		ObjetZork aisance = new ObjetZork("aisance", EffetObjetZork.TUEUR, 100, grandChene);
-		ObjetZork legerete = new ObjetZork("legerete", EffetObjetZork.NEUTRE, 100, lacSud);
-		ObjetZork fraicheur = new ObjetZork("fraicheur", EffetObjetZork.NEUTRE, 100, marecagesNord);
-		ObjetZork flora = new ObjetZork("flora", EffetObjetZork.NEUTRE, 100, riviere);
-		ObjetZork areline = new ObjetZork("areline", EffetObjetZork.NEUTRE, 100, clairiereNord);
-		ObjetZork honneur = new ObjetZork("honneur", EffetObjetZork.NEUTRE, 200, cabane);
-		ObjetZork titiana = new ObjetZork("titiana", EffetObjetZork.NEUTRE, 200, clairiereEst);
-		ObjetZork roselia = new ObjetZork("roselia", EffetObjetZork.NEUTRE, 200, grandChene);
+		ObjetKanji reve = new ObjetKanji("reve", EffetObjetKanji.MAGIQUE, 100, marecagesSud);
+		ObjetKanji intuition = new ObjetKanji("intuition", EffetObjetKanji.MAGIQUE, 100, zonePuits);
+		ObjetKanji secret = new ObjetKanji("secret", EffetObjetKanji.MAGIQUE, 100, cabane);
+		ObjetKanji morphee = new ObjetKanji("morphee", EffetObjetKanji.MAGIQUE, 100, clairiereOuest);
+		ObjetKanji grace = new ObjetKanji("grace", EffetObjetKanji.MAGIQUE, 100, marecagesNord);
+		ObjetKanji magie = new ObjetKanji("magie", EffetObjetKanji.MAGIQUE, 100, lacNord);
+		ObjetKanji diamant = new ObjetKanji("diamant", EffetObjetKanji.MAGIQUE, 200, clairiereEst);
+		ObjetKanji joie = new ObjetKanji("joie", EffetObjetKanji.TUEUR, 100, lacSud);
+		ObjetKanji purete = new ObjetKanji("purete", EffetObjetKanji.TUEUR, 100, riviere);
+		ObjetKanji eclat = new ObjetKanji("eclat", EffetObjetKanji.TUEUR, 100, clairiereNord);
+		ObjetKanji faveur = new ObjetKanji("faveur", EffetObjetKanji.TUEUR, 100, precipitations);
+		ObjetKanji aisance = new ObjetKanji("aisance", EffetObjetKanji.TUEUR, 100, grandChene);
+		ObjetKanji legerete = new ObjetKanji("legerete", EffetObjetKanji.NEUTRE, 100, lacSud);
+		ObjetKanji fraicheur = new ObjetKanji("fraicheur", EffetObjetKanji.NEUTRE, 100, marecagesNord);
+		ObjetKanji flora = new ObjetKanji("flora", EffetObjetKanji.NEUTRE, 100, riviere);
+		ObjetKanji areline = new ObjetKanji("areline", EffetObjetKanji.NEUTRE, 100, clairiereNord);
+		ObjetKanji honneur = new ObjetKanji("honneur", EffetObjetKanji.NEUTRE, 200, cabane);
+		ObjetKanji titiana = new ObjetKanji("titiana", EffetObjetKanji.NEUTRE, 200, clairiereEst);
+		ObjetKanji roselia = new ObjetKanji("roselia", EffetObjetKanji.NEUTRE, 200, grandChene);
 
-		ArrayList<ObjetZork> objets_clairiereOuest = new ArrayList<>();
-		ArrayList<ObjetZork> objets_lacSud = new ArrayList<>();
-		ArrayList<ObjetZork> objets_marecagesNord = new ArrayList<>();
-		ArrayList<ObjetZork> objets_riviere = new ArrayList<>();
-		ArrayList<ObjetZork> objets_marecagesSud = new ArrayList<>();
-		ArrayList<ObjetZork> objets_clairiereNord = new ArrayList<>();
-		ArrayList<ObjetZork> objets_zonePuits = new ArrayList<>();
-		ArrayList<ObjetZork> objets_entreeForet = new ArrayList<>();
-		ArrayList<ObjetZork> objets_lacNord = new ArrayList<>();
-		ArrayList<ObjetZork> objets_precipitations = new ArrayList<>();
-		ArrayList<ObjetZork> objets_cabane = new ArrayList<>();
-		ArrayList<ObjetZork> objets_clairiereEst = new ArrayList<>();
-		ArrayList<ObjetZork> objets_grandChene = new ArrayList<>();
+		ArrayList<ObjetKanji> objets_clairiereOuest = new ArrayList<>();
+		ArrayList<ObjetKanji> objets_lacSud = new ArrayList<>();
+		ArrayList<ObjetKanji> objets_marecagesNord = new ArrayList<>();
+		ArrayList<ObjetKanji> objets_riviere = new ArrayList<>();
+		ArrayList<ObjetKanji> objets_marecagesSud = new ArrayList<>();
+		ArrayList<ObjetKanji> objets_clairiereNord = new ArrayList<>();
+		ArrayList<ObjetKanji> objets_zonePuits = new ArrayList<>();
+		ArrayList<ObjetKanji> objets_entreeForet = new ArrayList<>();
+		ArrayList<ObjetKanji> objets_lacNord = new ArrayList<>();
+		ArrayList<ObjetKanji> objets_precipitations = new ArrayList<>();
+		ArrayList<ObjetKanji> objets_cabane = new ArrayList<>();
+		ArrayList<ObjetKanji> objets_clairiereEst = new ArrayList<>();
+		ArrayList<ObjetKanji> objets_grandChene = new ArrayList<>();
 
 		objets_clairiereOuest.add(morphee);
 		objets_lacSud.add(joie);
@@ -506,7 +506,7 @@ public class Jeu {
 		boolean entreeFor = false;
 		boolean succes;
 		ajouterChiensDuJoueur(joueur, pieceCourante);
-		for (ObjetZork oz : pieceCourante.getContenu()) {
+		for (ObjetKanji oz : pieceCourante.getContenu()) {
 			entreeFor = true;
 			if (commande.getSecondMot().equals(oz.getNom())) {
 				succes = joueur.prendreObjet(oz);
@@ -540,7 +540,7 @@ public class Jeu {
 		ajouterChiensDuJoueur(joueur, pieceCourante);
 		boolean entreeFor = false;
 		boolean succes = false;
-		for (ObjetZork oz : joueur.getContenu()) {
+		for (ObjetKanji oz : joueur.getContenu()) {
 			entreeFor = true;
 			if(commande.getSecondMot().equals(oz.getNom())) {
 				succes = joueur.poserObjet(oz);

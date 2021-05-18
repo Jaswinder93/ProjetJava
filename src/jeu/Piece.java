@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.ArrayList;
 
-public class Piece extends Container<ObjetZork> {
+public class Piece extends Container<ObjetKanji> {
 
 	private String nom;
 	private ArrayList<Animal> animaux = new ArrayList<>();
@@ -18,7 +18,7 @@ public class Piece extends Container<ObjetZork> {
 		super();
 	}
 
-	public Piece(String nom, ArrayList<Animal> animaux, ArrayList<ObjetZork> contenu, ArrayList<Aliment> aliments) {
+	public Piece(String nom, ArrayList<Animal> animaux, ArrayList<ObjetKanji> contenu, ArrayList<Aliment> aliments) {
 		super(contenu);
 		if (nom == null || animaux == null || aliments == null)
 			throw new NullPointerException("Aucun argument ne doit etre null");
@@ -91,7 +91,7 @@ public class Piece extends Container<ObjetZork> {
 	}
 
 	@Override
-	public boolean ajoutPossible(ObjetZork oz) {
+	public boolean ajoutPossible(ObjetKanji oz) {
 		return true;
 	}
 
@@ -99,7 +99,7 @@ public class Piece extends Container<ObjetZork> {
 	public void afficherObjets() {
 		System.out.println("S'il y en a, voici les boites magiques disponibles : ");
 		if (!(getContenu().isEmpty())) {
-			for (ObjetZork oz : getContenu()) {
+			for (ObjetKanji oz : getContenu()) {
 				System.out.println("Nom : "+oz.getNom()+"; poids : "+oz.getPoids());
 			}
 		}
@@ -120,7 +120,7 @@ public class Piece extends Container<ObjetZork> {
 	}
 
 	@Override
-	public boolean retraitPossible(ObjetZork oz) {
+	public boolean retraitPossible(ObjetKanji oz) {
 		return contient(oz);
 	}
 

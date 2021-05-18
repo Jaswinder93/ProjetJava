@@ -1,7 +1,5 @@
 package jeu;
 
-import java.util.*;
-
 public class Commande {
 
 	private final String motCommande;

@@ -2,19 +2,19 @@ package jeu;
 
 import java.util.ArrayList;
 
-public abstract class Container<ObjetZork> {
+public abstract class Container<ObjetKanji> {
 
-	private ArrayList<ObjetZork> contenu;
+	private final ArrayList<ObjetKanji> contenu;
 	private int nbObjets;
 
 /* =================================CONSTRUCTEURS====================================*/
 
 	public Container() {
-		contenu = new ArrayList<ObjetZork>();
+		contenu = new ArrayList<>();
 		nbObjets = 0;
 	}
 
-	public Container(ArrayList<ObjetZork> lesObjets) {
+	public Container(ArrayList<ObjetKanji> lesObjets) {
 		contenu = new ArrayList<>();
 		contenu.addAll(lesObjets);
 		nbObjets = 0;
@@ -22,12 +22,8 @@ public abstract class Container<ObjetZork> {
 
 /* =================================GETTERS/SETTERS====================================*/
 
-	public ArrayList<ObjetZork> getContenu() {
+	public ArrayList<ObjetKanji> getContenu() {
 		return contenu;
-	}
-
-	public int getNbObjets() {
-		return nbObjets;
 	}
 
 	public void setPlusNbObjets(int newNbObjets) {
@@ -41,25 +37,24 @@ public abstract class Container<ObjetZork> {
 
 /* =================================METHODES====================================*/
 
-	public boolean contient(ObjetZork oz) {
+	public boolean contient(ObjetKanji oz) {
 		return contenu.contains(oz);
 	}
 
-	public void ajouter(ObjetZork oz) {
+	public void ajouter(ObjetKanji oz) {
 		if (ajoutPossible(oz))
 			contenu.add(oz);
 	}
 
-	public boolean retirer(ObjetZork oz) {
+	public void retirer(ObjetKanji oz) {
 		if (retraitPossible(oz)) {
-			return contenu.remove(oz);
+			contenu.remove(oz);
 		}
-		return false;
 	}
 
-	abstract boolean retraitPossible(ObjetZork oz);
+	abstract boolean retraitPossible(ObjetKanji oz);
 
-	abstract boolean ajoutPossible(ObjetZork oz);
+	abstract boolean ajoutPossible(ObjetKanji oz);
 
 	abstract void afficherObjets();
 

@@ -1,17 +1,9 @@
 package jeu;
 
-public class Aliment extends ObjetZork {
+public class Aliment extends ObjetKanji {
 
 	private final int valeur;
 	private TypeAliment type;
-
-	public Aliment() {
-		super();
-		valeur = 1;
-		setPoids(200);
-		setEffet(EffetObjetZork.NEUTRE);
-		setTransportable(false);
-	}
 
 	public Aliment(String nom, Piece pieceCourante, int valeur, TypeAliment type) {
 		super(nom, pieceCourante);
