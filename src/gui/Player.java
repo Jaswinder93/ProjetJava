@@ -29,6 +29,8 @@ public class Player extends JPanel {
     private int maxStamina = 100;
     private int weight = 0;
     private int maxWeight = 1000;
+    private int food = 20;
+    private int water = 20;
     private int nbMagicBox = 0;
     private int nbPoisonBox = 0;
 
@@ -42,6 +44,7 @@ public class Player extends JPanel {
         this.setBackground(Color.YELLOW);
         this.setBounds(95, 75, 10, 10);
         this.currentPosition = 10;
+        this.weight = this.food + this.water;
     }
 
     // METHODS
@@ -132,6 +135,7 @@ public class Player extends JPanel {
 
         return false;
     }
+
     public void sleep(int time) {
         for (int i = 0; i < time; i++) {
             this.stamina += 5;
@@ -147,6 +151,22 @@ public class Player extends JPanel {
                 this.thirst = 0;
             }
             // TODO For each hour can be attacked (%)
+        }
+    }
+    public void eat() {
+        int quantity = this.maxHunger - this.hunger;
+        if (this.food >= quantity && this.hunger < this.maxHunger) {
+            this.hunger += quantity;
+            this.food -= quantity;
+            this.weight -= quantity;
+        }
+    }
+    public void drink() {
+        int quantity = this.maxThirst - this.thirst;
+        if (this.water >= quantity && this.thirst < this.maxThirst) {
+            this.thirst += quantity;
+            this.water -= quantity;
+            this.weight -= quantity;
         }
     }
 
@@ -185,6 +205,8 @@ public class Player extends JPanel {
     public int getMaxWeight() {
         return this.maxWeight;
     }
+    public int getFood() { return this.food; }
+    public int getWater() { return this.water; }
     public int getNbMagicBox() {
         return this.nbMagicBox;
     }
