@@ -20,14 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6f09b0c1-9b71-4a00-b9d6-e84b4fee9357" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/gui/Box.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gui/IdeesClasseASupprimer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gui/Player.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gui/Region.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gui/Test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gui/Text.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gui/Window.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Kanji/gui/Player$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Kanji/gui/Player$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Kanji/gui/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Kanji/gui/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Kanji/gui/Text.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Kanji/gui/Text.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Kanji/gui/Window.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Kanji/gui/Window.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/Text.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/Text.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/Window.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,7 +179,7 @@
       <workItem from="1622361308434" duration="4086000" />
       <workItem from="1622400609170" duration="211000" />
       <workItem from="1622439670002" duration="2247000" />
-      <workItem from="1622457648723" duration="12877000" />
+      <workItem from="1622457648723" duration="15227000" />
     </task>
     <servers />
   </component>

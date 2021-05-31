@@ -24,7 +24,7 @@ public class Window {
 
     private JPanel mapPanel, playerPanel, compassPanel, interfacePanel;
     private static ArrayList<Region> regionPanel;
-    private JButton mainMenuButton;
+    private JButton mainMenuButton, sleepButton, eatButton, drinkButton, grabBoxButton;
     private JButton northButton, eastButton, southButton, westButton;
     private JLabel compassLabel;
     private JTextArea displayedText;
@@ -39,7 +39,7 @@ public class Window {
 
     // SLEEP SCREEN
 
-    private JButton sleepButton, previousButton, nextButton, validateSleepButton;
+    private JButton previousButton, nextButton, validateSleepButton;
     private JLabel sleepLabel, sleepHLabel, sleepTimeLabel;
     private int sleepTime;
 
@@ -200,6 +200,45 @@ public class Window {
             this.createSleepTimeChoicePanel();
         });
         this.interfacePanel.add(this.sleepButton);
+
+        this.eatButton = new JButton("Manger");
+        this.eatButton.setBounds(240, 0, 100, 50);
+        this.eatButton.setFont(new Font(FONT, Font.PLAIN, TEXT_FONT_SIZE));
+        this.eatButton.setBackground(Color.BLACK);
+        this.eatButton.setForeground(Color.WHITE);
+        this.eatButton.setFocusPainted(false);
+        this.eatButton.setBorder(new LineBorder(Color.WHITE));
+        this.eatButton.addActionListener(e -> {
+            player.eat();
+            this.setPlayerPanel();
+        });
+        this.interfacePanel.add(this.eatButton);
+
+        this.drinkButton = new JButton("Boire");
+        this.drinkButton.setBounds(360, 0, 100, 50);
+        this.drinkButton.setFont(new Font(FONT, Font.PLAIN, TEXT_FONT_SIZE));
+        this.drinkButton.setBackground(Color.BLACK);
+        this.drinkButton.setForeground(Color.WHITE);
+        this.drinkButton.setFocusPainted(false);
+        this.drinkButton.setBorder(new LineBorder(Color.WHITE));
+        this.drinkButton.addActionListener(e -> {
+            player.drink();
+            this.setPlayerPanel();
+        });
+        this.interfacePanel.add(this.drinkButton);
+
+        this.grabBoxButton = new JButton("Prendre");
+        this.grabBoxButton.setBounds(480, 0, 100, 50);
+        this.grabBoxButton.setFont(new Font(FONT, Font.PLAIN, TEXT_FONT_SIZE));
+        this.grabBoxButton.setBackground(Color.BLACK);
+        this.grabBoxButton.setForeground(Color.WHITE);
+        this.grabBoxButton.setFocusPainted(false);
+        this.grabBoxButton.setBorder(new LineBorder(Color.WHITE));
+        this.grabBoxButton.addActionListener(e -> {
+
+        });
+        this.interfacePanel.add(this.grabBoxButton);
+
         this.interfacePanel.update(this.interfacePanel.getGraphics());
 
         this.initializeBoxes();
@@ -272,7 +311,18 @@ public class Window {
                 position = random.nextInt(11);
                 System.out.println("DEBUG: Box created at position " + position);
             } while (this.boxLocalization.get(position) != null);
-            Box box = new Box(100, Type.MAGIC, "Box1");
+            Box box = new Box(100, Type.MAGIC, "MAGIC BOX");
+            regionPanel.get(position).addBox(box);
+            this.boxLocalization.put(position, box);
+        }
+
+        for (int i = 0; i < 3; i++) {
+            int position;
+            do {
+                position = random.nextInt(11);
+                System.out.println("DEBUG: Box created at position " + position);
+            } while (this.boxLocalization.get(position) != null);
+            Box box = new Box(100, Type.POISON, "POISON BOX");
             regionPanel.get(position).addBox(box);
             this.boxLocalization.put(position, box);
         }

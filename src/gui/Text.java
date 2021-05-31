@@ -33,6 +33,8 @@ public class Text {
                 " # Soif: " + Window.getPlayer().getThirst() + " / " + Window.getPlayer().getMaxThirst() + "\n" +
                 " # Energie: " + Window.getPlayer().getStamina() + " / " + Window.getPlayer().getMaxStamina() + "\n" +
                 " # Poids: " + Window.getPlayer().getWeight() + " / " + Window.getPlayer().getMaxWeight() + "\n" +
+                " # Nourriture: " + Window.getPlayer().getFood() + "\n" +
+                " # Eau: " + Window.getPlayer().getWater() + "\n" +
                 " # Boite magique: " + Window.getPlayer().getNbMagicBox() + " / 3\n" +
                 " # Boite poison: " + Window.getPlayer().getNbPoisonBox() + " / 3\n" +
                 "\n" +
