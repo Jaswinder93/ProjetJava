@@ -27,7 +27,7 @@ public class Player extends JPanel {
     private int maxThirst = 100;
     private int stamina = 100;
     private int maxStamina = 100;
-    private int weight = 0;
+    private int weight;
     private int maxWeight = 1000;
     private int food = 20;
     private int water = 20;
@@ -115,7 +115,6 @@ public class Player extends JPanel {
             this.stamina = 0;
             return true;
         }
-
         this.hunger -= 5;
         if (this.hunger < 0) {
             this.hunger = 0;
@@ -167,6 +166,23 @@ public class Player extends JPanel {
             this.thirst += quantity;
             this.water -= quantity;
             this.weight -= quantity;
+        }
+    }
+
+    public void hunt() {
+
+    }
+    public void takeWater() {
+        if (this.stamina > 0) {
+            this.water += 10;
+            this.weight += 10;
+            this.stamina -= 5;
+        }
+    }
+    public void takeBox(Type type) {
+        switch (type) {
+            case MAGIC -> this.nbMagicBox += 1;
+            case POISON -> this.nbPoisonBox += 1;
         }
     }
 

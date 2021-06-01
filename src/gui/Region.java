@@ -31,7 +31,7 @@ public class Region extends JPanel {
             System.out.println("DEBUG: [Region.java] => Already a box in " + this.getName());
         }
     }
-    public void removeBox(Box box) {
+    public void removeBox() {
         if (this.box != null) {
             this.box = null;
         } else {
@@ -40,6 +40,12 @@ public class Region extends JPanel {
     }
     public Boolean containBox() {
         return (box != null);
+    }
+
+    // GETTERS
+
+    public Box getBox() {
+        return this.box;
     }
 
 }

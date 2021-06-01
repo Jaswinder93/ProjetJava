@@ -24,7 +24,7 @@ public class Window {
 
     private JPanel mapPanel, playerPanel, compassPanel, interfacePanel;
     private static ArrayList<Region> regionPanel;
-    private JButton mainMenuButton, sleepButton, eatButton, drinkButton, grabBoxButton;
+    private JButton mainMenuButton, sleepButton, eatButton, drinkButton, takeButton, huntButton, takeWaterButton, grabBoxButton, returnButton;
     private JButton northButton, eastButton, southButton, westButton;
     private JLabel compassLabel;
     private JTextArea displayedText;
@@ -80,17 +80,16 @@ public class Window {
         this.titleLabel.setForeground(Color.WHITE);
         this.window.add(this.titleLabel);
 
-        this.startButton = new JButton("Start");
-        this.startButton.setBounds(350, 400, 100, 50);
-        this.startButton.setFont(new Font(FONT, Font.PLAIN, MAIN_TEXT_FONT_SIZE));
-        this.startButton.setBackground(Color.BLACK);
-        this.startButton.setForeground(Color.WHITE);
-        this.startButton.setFocusPainted(false);
-        this.startButton.setBorder(new LineBorder(Color.WHITE));
+        this.startButton = new Button("Start", 350, 400, 100, 50, MAIN_TEXT_FONT_SIZE);
+//        this.startButton = new JButton("Start");
+//        this.startButton.setBounds(350, 400, 100, 50);
+//        this.startButton.setFont(new Font(FONT, Font.PLAIN, MAIN_TEXT_FONT_SIZE));
+//        this.startButton.setBackground(Color.BLACK);
+//        this.startButton.setForeground(Color.WHITE);
+//        this.startButton.setFocusPainted(false);
+//        this.startButton.setBorder(new LineBorder(Color.WHITE));
         this.startButton.addActionListener(e -> {
-//            this.window.remove(this.titleLabel);
             this.titleLabel.setVisible(false);
-//            this.window.remove(this.startButton);
             this.startButton.setVisible(false);
             this.createGameScreen();
        });
@@ -175,7 +174,7 @@ public class Window {
 
     private void launchGame() {
         this.createMapPanel();
-        this.setPlayerPanel();
+        this.actualizePlayerPanel();
     }
 
     private void createMapPanel() {
@@ -210,7 +209,7 @@ public class Window {
         this.eatButton.setBorder(new LineBorder(Color.WHITE));
         this.eatButton.addActionListener(e -> {
             player.eat();
-            this.setPlayerPanel();
+            this.actualizePlayerPanel();
         });
         this.interfacePanel.add(this.eatButton);
 
@@ -223,21 +222,25 @@ public class Window {
         this.drinkButton.setBorder(new LineBorder(Color.WHITE));
         this.drinkButton.addActionListener(e -> {
             player.drink();
-            this.setPlayerPanel();
+            this.actualizePlayerPanel();
         });
         this.interfacePanel.add(this.drinkButton);
 
-        this.grabBoxButton = new JButton("Prendre");
-        this.grabBoxButton.setBounds(480, 0, 100, 50);
-        this.grabBoxButton.setFont(new Font(FONT, Font.PLAIN, TEXT_FONT_SIZE));
-        this.grabBoxButton.setBackground(Color.BLACK);
-        this.grabBoxButton.setForeground(Color.WHITE);
-        this.grabBoxButton.setFocusPainted(false);
-        this.grabBoxButton.setBorder(new LineBorder(Color.WHITE));
-        this.grabBoxButton.addActionListener(e -> {
-
+        this.takeButton = new JButton("Prendre");
+        this.takeButton.setBounds(480, 0, 100, 50);
+        this.takeButton.setFont(new Font(FONT, Font.PLAIN, TEXT_FONT_SIZE));
+        this.takeButton.setBackground(Color.BLACK);
+        this.takeButton.setForeground(Color.WHITE);
+        this.takeButton.setFocusPainted(false);
+        this.takeButton.setBorder(new LineBorder(Color.WHITE));
+        this.takeButton.addActionListener(e -> {
+            this.sleepButton.setVisible(false);
+            this.eatButton.setVisible(false);
+            this.drinkButton.setVisible(false);
+            this.takeButton.setVisible(false);
+            this.showTakeInterface();
         });
-        this.interfacePanel.add(this.grabBoxButton);
+        this.interfacePanel.add(this.takeButton);
 
         this.interfacePanel.update(this.interfacePanel.getGraphics());
 
@@ -328,8 +331,84 @@ public class Window {
         }
 
     }
+    private void showTakeInterface() {
 
-    private void setPlayerPanel() {
+        if (this.regionHasAnimal()) {
+            this.huntButton = new JButton("Chasser");
+            this.huntButton.setBounds(120, 0, 100, 50);
+            this.huntButton.setFont(new Font(FONT, Font.PLAIN, TEXT_FONT_SIZE));
+            this.huntButton.setBackground(Color.BLACK);
+            this.huntButton.setForeground(Color.WHITE);
+            this.huntButton.setFocusPainted(false);
+            this.huntButton.setBorder(new LineBorder(Color.WHITE));
+            this.huntButton.addActionListener(e -> {
+
+            });
+            this.interfacePanel.add(this.huntButton);
+        }
+        if (this.regionHasWater()) {
+            this.takeWaterButton = new JButton("Prendre eau");
+            this.takeWaterButton.setBounds(240, 0, 100, 50);
+            this.takeWaterButton.setFont(new Font(FONT, Font.PLAIN, TEXT_FONT_SIZE));
+            this.takeWaterButton.setBackground(Color.BLACK);
+            this.takeWaterButton.setForeground(Color.WHITE);
+            this.takeWaterButton.setFocusPainted(false);
+            this.takeWaterButton.setBorder(new LineBorder(Color.WHITE));
+            this.takeWaterButton.addActionListener(e -> {
+                player.takeWater();
+                this.actualizePlayerPanel();
+            });
+            this.interfacePanel.add(this.takeWaterButton);
+        }
+        if (this.regionHasBox()) {
+            this.grabBoxButton = new JButton("Prendre boite");
+            this.grabBoxButton.setBounds(360, 0, 100, 50);
+            this.grabBoxButton.setFont(new Font(FONT, Font.PLAIN, TEXT_FONT_SIZE));
+            this.grabBoxButton.setBackground(Color.BLACK);
+            this.grabBoxButton.setForeground(Color.WHITE);
+            this.grabBoxButton.setFocusPainted(false);
+            this.grabBoxButton.setBorder(new LineBorder(Color.WHITE));
+            this.grabBoxButton.addActionListener(e -> {
+                player.takeBox(this.getBoxType());
+                this.removeBox();
+                this.actualizePlayerPanel();
+            });
+            this.interfacePanel.add(this.grabBoxButton);
+        }
+
+        this.returnButton = new JButton("Retour");
+        this.returnButton.setBounds(480, 0, 100, 50);
+        this.returnButton.setFont(new Font(FONT, Font.PLAIN, TEXT_FONT_SIZE));
+        this.returnButton.setBackground(Color.BLACK);
+        this.returnButton.setForeground(Color.WHITE);
+        this.returnButton.setFocusPainted(false);
+        this.returnButton.setBorder(new LineBorder(Color.WHITE));
+        this.returnButton.addActionListener(e -> {
+            this.hideTakeMenu();
+        });
+        this.interfacePanel.add(this.returnButton);
+    }
+    
+    private boolean regionHasWater() {
+        return player.getCurrentPosition() == 2 || player.getCurrentPosition() == 5 || player.getCurrentPosition() == 9;
+    }
+    private boolean regionHasBox() {
+        return regionPanel.get(player.getCurrentPosition()).containBox();
+    }
+    private boolean regionHasAnimal() {
+        // TODO regionHasAnimal
+        return true;
+    }
+
+    private Type getBoxType() {
+        return regionPanel.get(player.getCurrentPosition()).getBox().getType();
+    }
+    private void removeBox() {
+        regionPanel.get(player.getCurrentPosition()).removeBox();
+        this.grabBoxButton.setVisible(false);
+    }
+
+    private void actualizePlayerPanel() {
         this.displayedText.setText(Text.PLAYER_STATUS());
     }
 
@@ -342,13 +421,34 @@ public class Window {
             regionPanel.get(player.getCurrentPosition()).repaint();
         }
 
-        this.setPlayerPanel();
+        this.hideTakeMenu();
+
+        this.actualizePlayerPanel();
         if (!player.isAlive()) {
             this.mapPanel.setVisible(false);
             this.playerPanel.setVisible(false);
             this.interfacePanel.setVisible(false);
             this.createDeathPanel();
         }
+    }
+    private void hideTakeMenu() {
+        if (this.huntButton != null) {
+            this.huntButton.setVisible(false);
+        }
+        if (this.takeWaterButton != null) {
+            this.takeWaterButton.setVisible(false);
+        }
+        if (this.grabBoxButton != null) {
+            this.grabBoxButton.setVisible(false);
+        }
+        if (this.returnButton != null) {
+            this.returnButton.setVisible(false);
+        }
+
+        this.sleepButton.setVisible(true);
+        this.eatButton.setVisible(true);
+        this.drinkButton.setVisible(true);
+        this.takeButton.setVisible(true);
     }
     public static String displayCurrentPositionInfos() {
         return
@@ -441,7 +541,7 @@ public class Window {
             this.playerPanel.setVisible(true);
             this.interfacePanel.setVisible(true);
 
-            this.setPlayerPanel();
+            this.actualizePlayerPanel();
         });
         this.window.add(this.validateSleepButton);
     }
