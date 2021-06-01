@@ -1,12 +1,16 @@
 package gui;
 
+import gui.animal.Animal;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Region extends JPanel {
 
     private Box box;
+    private ArrayList<Animal> animals = new ArrayList<>();
 
     // CONSTRUCTORS
 
@@ -40,6 +44,38 @@ public class Region extends JPanel {
     }
     public Boolean containBox() {
         return (box != null);
+    }
+
+    public void addAnimal(Animal animal) {
+        this.animals.add(animal);
+    }
+
+    public int getNbBears() {
+        int nb = 0;
+        for (Animal animal : animals) {
+            if (animal.getSpecie().equals("Bear")) {
+                nb += 1;
+            }
+        }
+        return nb;
+    }
+    public int getNbDogs() {
+        int nb = 0;
+        for (Animal animal : animals) {
+            if (animal.getSpecie().equals("Dog")) {
+                nb += 1;
+            }
+        }
+        return nb;
+    }
+    public int getNbDeers() {
+        int nb = 0;
+        for (Animal animal : animals) {
+            if (animal.getSpecie().equals("Deer")) {
+                nb += 1;
+            }
+        }
+        return nb;
     }
 
     // GETTERS

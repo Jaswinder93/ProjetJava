@@ -23,7 +23,7 @@ public class Window {
 
     private JPanel mapPanel, playerPanel, compassPanel, interfacePanel;
     private static ArrayList<Region> regionPanel;
-    private JButton mainMenuButton, sleepButton, eatButton, drinkButton, takeButton, huntButton, takeWaterButton, grabBoxButton, returnButton;
+    private JButton mainMenuButton, sleepButton, eatButton, drinkButton, takeButton, tameButton, huntButton, takeWaterButton, grabBoxButton, returnButton;
     private JButton northButton, eastButton, southButton, westButton;
     private JLabel compassLabel;
     private JTextArea displayedText;
@@ -45,7 +45,7 @@ public class Window {
     // DEATH SCREEN
 
     private JLabel deathLabel;
-    private JTextArea resultText;
+    private JTextArea resultText; // TODO score when dead
 
     // CONSTRUCTORS
 
@@ -174,6 +174,7 @@ public class Window {
 
         this.takeButton = new Button("Prendre", 480, 0, 100, 50, TEXT_FONT_SIZE);
         this.takeButton.addActionListener(e -> {
+            this.mainMenuButton.setVisible(false);
             this.sleepButton.setVisible(false);
             this.eatButton.setVisible(false);
             this.drinkButton.setVisible(false);
@@ -268,7 +269,18 @@ public class Window {
         }
 
     }
+    private void initializeAnimal() {
+
+    }
     private void showTakeInterface() {
+        
+        if (this.regionHasDog()) {
+            this.tameButton = new Button("Dresser", 0, 0, 100, 50, TEXT_FONT_SIZE);
+            this.tameButton.addActionListener(e -> {
+
+            });
+            this.interfacePanel.add(this.tameButton);
+        }
 
         if (this.regionHasAnimal()) {
             this.huntButton = new Button("Chasser", 120, 0, 100, 50, TEXT_FONT_SIZE);
@@ -296,21 +308,31 @@ public class Window {
         }
 
         this.returnButton = new Button("Retour", 480, 0, 100, 50, TEXT_FONT_SIZE);
-        this.returnButton.addActionListener(e -> {
-            this.hideTakeMenu();
-        });
+        this.returnButton.addActionListener(e -> this.hideTakeMenu());
         this.interfacePanel.add(this.returnButton);
     }
-    
+
+    private boolean regionHasDog() {
+        return this.getNbDogs() > 0;
+    }
+    private boolean regionHasAnimal() {
+        return this.getNbBears() > 0 || this.getNbDogs() > 0 ||this.getNbDeers() > 0;
+    }
     private boolean regionHasWater() {
         return player.getCurrentPosition() == 2 || player.getCurrentPosition() == 5 || player.getCurrentPosition() == 9;
     }
     private boolean regionHasBox() {
         return regionPanel.get(player.getCurrentPosition()).containBox();
     }
-    private boolean regionHasAnimal() {
-        // TODO regionHasAnimal
-        return true;
+
+    private int getNbBears() {
+        return regionPanel.get(player.getCurrentPosition()).getNbBears();
+    }
+    private int getNbDogs() {
+        return regionPanel.get(player.getCurrentPosition()).getNbDogs();
+    }
+    private int getNbDeers() {
+        return regionPanel.get(player.getCurrentPosition()).getNbDeers();
     }
 
     private Type getBoxType() {
@@ -333,9 +355,7 @@ public class Window {
             regionPanel.get(player.getCurrentPosition()).add(player);
             regionPanel.get(player.getCurrentPosition()).repaint();
         }
-
         this.hideTakeMenu();
-
         this.actualizePlayerPanel();
         if (!player.isAlive()) {
             this.mapPanel.setVisible(false);
@@ -345,6 +365,9 @@ public class Window {
         }
     }
     private void hideTakeMenu() {
+        if (this.tameButton != null) {
+            this.tameButton.setVisible(false);
+        }
         if (this.huntButton != null) {
             this.huntButton.setVisible(false);
         }
@@ -358,25 +381,22 @@ public class Window {
             this.returnButton.setVisible(false);
         }
 
+        this.mainMenuButton.setVisible(true);
         this.sleepButton.setVisible(true);
         this.eatButton.setVisible(true);
         this.drinkButton.setVisible(true);
         this.takeButton.setVisible(true);
     }
     public static String displayCurrentPositionInfos() {
-        return
-        "Région\n" +
-        "\n" +
-        " # " + (regionPanel.get(player.getCurrentPosition()).containBox() ? "Il y a une boite ici !" : "Il ne semble pas y avoir de boite");
+        return "Région\n" +
+                "\n" +
+                " # " + (regionPanel.get(player.getCurrentPosition()).containBox() ? "Il y a une boite ici !" : "Il ne semble pas y avoir de boite");
     }
     private void createDeathScreen() {
         this.window.setSize(800, 600);
         this.window.setLocationRelativeTo(null);
 
-        this.deathLabel = new JLabel("Vous êtes mort");
-        this.deathLabel.setBounds(260, 100, 300, 90);
-        this.deathLabel.setFont(new Font(FONT, Font.PLAIN, MAIN_TEXT_FONT_SIZE));
-        this.deathLabel.setForeground(Color.WHITE);
+        this.deathLabel = new Label("Vous êtes mort", 260, 100, 300, 90, MAIN_TEXT_FONT_SIZE);
         this.window.add(this.deathLabel);
     }
 
@@ -388,7 +408,7 @@ public class Window {
 
             return;
 
-            // TODO Add explantion text : "could not sleep when stamina = 100"
+            // TODO Add explanation text : "could not sleep when stamina = 100"
         }
 
         this.sleepLabel = new Label("Dormir: ", 360, 200, 600, 90, TITLE_FONT_SIZE);
@@ -401,15 +421,11 @@ public class Window {
         this.window.add(this.sleepTimeLabel);
 
         this.previousButton = new Button("<", 500, 300, 80, 50, MAIN_TEXT_FONT_SIZE);
-        this.previousButton.addActionListener(e -> {
-            this.removeOneHour();
-        });
+        this.previousButton.addActionListener(e -> this.removeOneHour());
         this.window.add(this.previousButton);
 
         this.nextButton = new Button(">", 600, 300, 80, 50, MAIN_TEXT_FONT_SIZE);
-        this.nextButton.addActionListener(e -> {
-            this.addOneHour();
-        });
+        this.nextButton.addActionListener(e -> this.addOneHour());
         this.window.add(this.nextButton);
 
         this.validateSleepButton = new Button("Dormir", 500, 380, 160, 50, MAIN_TEXT_FONT_SIZE);

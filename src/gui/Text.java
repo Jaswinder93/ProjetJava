@@ -15,9 +15,10 @@ public class Text {
     }
     public static String WELCOME_STRING_2() {
         return "Certaines boites sont trop lourdes pour vous, ce sont celles qui pèsent " +
-                "plus de 100 grammes. Malheureusement, vous ne connaîtrez jamais leur effet.\n" +
+                "plus de 100 grammes. Malheureusement, vous ne connaîtrez jamais leur effet avant de les avoir ramassées.\n" +
                 "De plus, vous avez une certaine masse totale à ne pas dépasser.\n" +
                 "Vous ne pouvez porter plus de 700 grammes.\n" +
+                "\n" +
                 "Vous pouvez adopter des chiens pour qu'ils vous tiennent compagnie.\n" +
                 "De même, vous pouvez les libérer si vous en êtes lassé.\n";
     }
