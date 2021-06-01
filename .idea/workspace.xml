@@ -20,18 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6f09b0c1-9b71-4a00-b9d6-e84b4fee9357" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/gui/Button.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gui/Label.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gui/Panel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/gui/Box.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Kanji/gui/Box.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/gui/Player$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Kanji/gui/Player$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/gui/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Kanji/gui/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/gui/Region.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Kanji/gui/Region.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Kanji/gui/Button.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Kanji/gui/Button.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Kanji/gui/Window.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Kanji/gui/Window.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/Box.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/Box.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/IdeesClasseASupprimer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/IdeesClasseASupprimer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/Region.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/Region.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/Text.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/Text.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/Button.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/Button.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gui/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/Window.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -185,7 +179,7 @@
       <workItem from="1622439670002" duration="2247000" />
       <workItem from="1622457648723" duration="16112000" />
       <workItem from="1622495634186" duration="1009000" />
-      <workItem from="1622548809760" duration="3806000" />
+      <workItem from="1622548809760" duration="5649000" />
     </task>
     <servers />
   </component>

@@ -1,7 +1,6 @@
 package gui;
 
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -74,20 +73,10 @@ public class Window {
         this.window.setSize(800, 600);
         this.window.setLocationRelativeTo(null);
 
-        this.titleLabel = new JLabel("Kanji");
-        this.titleLabel.setBounds(320, 100, 200, 90);
-        this.titleLabel.setFont(new Font(FONT, Font.PLAIN, TITLE_FONT_SIZE));
-        this.titleLabel.setForeground(Color.WHITE);
+        this.titleLabel = new Label("Kanji", 320, 100, 200, 90, TITLE_FONT_SIZE);
         this.window.add(this.titleLabel);
 
         this.startButton = new Button("Start", 350, 400, 100, 50, MAIN_TEXT_FONT_SIZE);
-//        this.startButton = new JButton("Start");
-//        this.startButton.setBounds(350, 400, 100, 50);
-//        this.startButton.setFont(new Font(FONT, Font.PLAIN, MAIN_TEXT_FONT_SIZE));
-//        this.startButton.setBackground(Color.BLACK);
-//        this.startButton.setForeground(Color.WHITE);
-//        this.startButton.setFocusPainted(false);
-//        this.startButton.setBorder(new LineBorder(Color.WHITE));
         this.startButton.addActionListener(e -> {
             this.titleLabel.setVisible(false);
             this.startButton.setVisible(false);
@@ -99,17 +88,11 @@ public class Window {
         this.window.setSize(1200, 600);
         this.window.setLocationRelativeTo(null);
 
-        this.mapPanel = new JPanel();
-        this.mapPanel.setBounds(50, 50, 800, 400);
-        this.mapPanel.setBackground(Color.BLACK);
-        this.mapPanel.setBorder(new LineBorder(Color.WHITE));
-        this.mapPanel.setLayout(new GridLayout(3, 3));
+        this.mapPanel = new Panel(50, 50, 800, 400, true);
+        this.mapPanel.setLayout(new GridLayout(3, 4));
         this.window.add(this.mapPanel);
 
-        this.playerPanel = new JPanel();
-        this.playerPanel.setBounds(900, 50, 250, 480);
-        this.playerPanel.setBackground(Color.BLACK);
-        this.playerPanel.setBorder(new LineBorder(Color.WHITE));
+        this.playerPanel = new Panel(900, 50, 250, 480, true);
         this.window.add(this.playerPanel);
 
         this.displayedText = new JTextArea(Text.WELCOME_STRING_1());
@@ -122,13 +105,7 @@ public class Window {
         this.displayedText.setForeground(Color.WHITE);
         this.playerPanel.add(this.displayedText);
 
-        this.nextTextButton = new JButton("Next");
-        this.nextTextButton.setPreferredSize(new Dimension(200, 50));
-        this.nextTextButton.setFont(new Font(FONT, Font.PLAIN, TEXT_FONT_SIZE));
-        this.nextTextButton.setBackground(Color.BLACK);
-        this.nextTextButton.setForeground(Color.WHITE);
-        this.nextTextButton.setFocusPainted(false);
-        this.nextTextButton.setBorder(new LineBorder(Color.WHITE));
+        this.nextTextButton = new Button("Next",200, 50, TEXT_FONT_SIZE);
         this.nextTextButton.addActionListener(e -> {
             this.displayedText.setText(Text.WELCOME_STRING_2());
             this.nextTextButton.setText("Start Adventure");
@@ -141,33 +118,20 @@ public class Window {
         });
         this.playerPanel.add(this.nextTextButton);
 
-        this.interfacePanel = new JPanel();
-        this.interfacePanel.setBounds(50, 480, 800, 50);
-        this.interfacePanel.setBackground(Color.BLACK);
+        this.interfacePanel = new Panel(50, 480, 800, 50, false);
         this.interfacePanel.setLayout(null);
         this.window.add(this.interfacePanel);
 
-        this.mainMenuButton = new JButton("Main Menu");
-        this.mainMenuButton.setBounds(0, 0, 100, 50);
-        this.mainMenuButton.setFont(new Font(FONT, Font.PLAIN, TEXT_FONT_SIZE));
-        this.mainMenuButton.setBackground(Color.BLACK);
-        this.mainMenuButton.setForeground(Color.WHITE);
-        this.mainMenuButton.setFocusPainted(false);
-        this.mainMenuButton.setBorder(new LineBorder(Color.WHITE));
+        this.mainMenuButton = new Button("Main Menu", 0, 0, 100, 50, TEXT_FONT_SIZE);
         this.mainMenuButton.addActionListener(e -> {
             this.mapPanel.setVisible(false);
             this.playerPanel.setVisible(false);
             this.interfacePanel.setVisible(false);
-//            this.mainMenuButton.setVisible(false);
-//            this.compassPanel.setVisible(false);
-//            this.sleepButton.setVisible(false);
             this.createTitleScreen();
         });
         this.interfacePanel.add(this.mainMenuButton);
 
-        this.compassPanel = new JPanel();
-        this.compassPanel.setBounds(600, 0, 200, 50);
-        this.compassPanel.setBackground(Color.BLACK);
+        this.compassPanel = new Panel(600, 0, 200, 50, false);
         this.compassPanel.setLayout(new BorderLayout());
         this.interfacePanel.add(this.compassPanel);
     }
@@ -185,13 +149,7 @@ public class Window {
 
         this.initializeCompassPanel();
 
-        this.sleepButton = new JButton("Dormir");
-        this.sleepButton.setBounds(120, 0, 100, 50);
-        this.sleepButton.setFont(new Font(FONT, Font.PLAIN, TEXT_FONT_SIZE));
-        this.sleepButton.setBackground(Color.BLACK);
-        this.sleepButton.setForeground(Color.WHITE);
-        this.sleepButton.setFocusPainted(false);
-        this.sleepButton.setBorder(new LineBorder(Color.WHITE));
+        this.sleepButton = new Button("Dormir" , 120, 0, 100, 50, TEXT_FONT_SIZE);
         this.sleepButton.addActionListener(e -> {
             this.mapPanel.setVisible(false);
             this.playerPanel.setVisible(false);
@@ -200,39 +158,21 @@ public class Window {
         });
         this.interfacePanel.add(this.sleepButton);
 
-        this.eatButton = new JButton("Manger");
-        this.eatButton.setBounds(240, 0, 100, 50);
-        this.eatButton.setFont(new Font(FONT, Font.PLAIN, TEXT_FONT_SIZE));
-        this.eatButton.setBackground(Color.BLACK);
-        this.eatButton.setForeground(Color.WHITE);
-        this.eatButton.setFocusPainted(false);
-        this.eatButton.setBorder(new LineBorder(Color.WHITE));
+        this.eatButton = new Button("Manger", 240, 0, 100, 50, TEXT_FONT_SIZE);
         this.eatButton.addActionListener(e -> {
             player.eat();
             this.actualizePlayerPanel();
         });
         this.interfacePanel.add(this.eatButton);
 
-        this.drinkButton = new JButton("Boire");
-        this.drinkButton.setBounds(360, 0, 100, 50);
-        this.drinkButton.setFont(new Font(FONT, Font.PLAIN, TEXT_FONT_SIZE));
-        this.drinkButton.setBackground(Color.BLACK);
-        this.drinkButton.setForeground(Color.WHITE);
-        this.drinkButton.setFocusPainted(false);
-        this.drinkButton.setBorder(new LineBorder(Color.WHITE));
+        this.drinkButton = new Button("Boire", 360, 0, 100, 50, TEXT_FONT_SIZE);
         this.drinkButton.addActionListener(e -> {
             player.drink();
             this.actualizePlayerPanel();
         });
         this.interfacePanel.add(this.drinkButton);
 
-        this.takeButton = new JButton("Prendre");
-        this.takeButton.setBounds(480, 0, 100, 50);
-        this.takeButton.setFont(new Font(FONT, Font.PLAIN, TEXT_FONT_SIZE));
-        this.takeButton.setBackground(Color.BLACK);
-        this.takeButton.setForeground(Color.WHITE);
-        this.takeButton.setFocusPainted(false);
-        this.takeButton.setBorder(new LineBorder(Color.WHITE));
+        this.takeButton = new Button("Prendre", 480, 0, 100, 50, TEXT_FONT_SIZE);
         this.takeButton.addActionListener(e -> {
             this.sleepButton.setVisible(false);
             this.eatButton.setVisible(false);
@@ -248,18 +188,18 @@ public class Window {
     }
     private void initializeRegionPanel() {
         ArrayList<String> names = new ArrayList<>();
-        names.add("North Swamp"); // 0
-        names.add("Mountain"); // 1
-        names.add("River"); // 2
-        names.add("North Clearing"); // 3
-        names.add("South Swamp"); // 4
-        names.add("North Lake"); // 5
-        names.add("West Clearing"); // 6
-        names.add("East Clearing"); // 7
-        names.add("Abandoned Hut"); // 8
-        names.add("South Lake"); // 9
-        names.add("Forest Entry"); // 10
-        names.add("Mine"); // 11
+        names.add("North Swamp");     // 0
+        names.add("Mountain");        // 1
+        names.add("River");           // 2
+        names.add("North Clearing");  // 3
+        names.add("South Swamp");     // 4
+        names.add("North Lake");      // 5
+        names.add("West Clearing");   // 6
+        names.add("East Clearing");   // 7
+        names.add("Abandoned Hut");   // 8
+        names.add("South Lake");      // 9
+        names.add("Forest Entry");    // 10
+        names.add("Mine");            // 11
 
         regionPanel = new ArrayList<>();
         for (String name : names) {
@@ -295,12 +235,7 @@ public class Window {
         });
     }
     private JButton initializeCompassButton(String text, int width, int height, String borderLayout) {
-        JButton button = new JButton(text);
-        button.setPreferredSize(new Dimension(width, height));
-        button.setBackground(Color.BLACK);
-        button.setForeground(Color.WHITE);
-        button.setFocusPainted(false);
-        button.setBorder(new LineBorder(Color.WHITE));
+        JButton button = new Button(text, width, height, SMALL_TEXT_FONT_SIZE);
         this.compassPanel.add(button, borderLayout);
 
         return button;
@@ -308,6 +243,7 @@ public class Window {
     private void initializeBoxes() {
         this.boxLocalization = new HashMap<>();
 
+        // Magic Boxes
         for (int i = 0; i < 3; i++) {
             int position;
             do {
@@ -319,6 +255,7 @@ public class Window {
             this.boxLocalization.put(position, box);
         }
 
+        // Poison Boxes
         for (int i = 0; i < 3; i++) {
             int position;
             do {
@@ -334,26 +271,14 @@ public class Window {
     private void showTakeInterface() {
 
         if (this.regionHasAnimal()) {
-            this.huntButton = new JButton("Chasser");
-            this.huntButton.setBounds(120, 0, 100, 50);
-            this.huntButton.setFont(new Font(FONT, Font.PLAIN, TEXT_FONT_SIZE));
-            this.huntButton.setBackground(Color.BLACK);
-            this.huntButton.setForeground(Color.WHITE);
-            this.huntButton.setFocusPainted(false);
-            this.huntButton.setBorder(new LineBorder(Color.WHITE));
+            this.huntButton = new Button("Chasser", 120, 0, 100, 50, TEXT_FONT_SIZE);
             this.huntButton.addActionListener(e -> {
 
             });
             this.interfacePanel.add(this.huntButton);
         }
         if (this.regionHasWater()) {
-            this.takeWaterButton = new JButton("Prendre eau");
-            this.takeWaterButton.setBounds(240, 0, 100, 50);
-            this.takeWaterButton.setFont(new Font(FONT, Font.PLAIN, TEXT_FONT_SIZE));
-            this.takeWaterButton.setBackground(Color.BLACK);
-            this.takeWaterButton.setForeground(Color.WHITE);
-            this.takeWaterButton.setFocusPainted(false);
-            this.takeWaterButton.setBorder(new LineBorder(Color.WHITE));
+            this.takeWaterButton = new Button("Prendre eau", 240, 0, 100, 50, TEXT_FONT_SIZE);
             this.takeWaterButton.addActionListener(e -> {
                 player.takeWater();
                 this.actualizePlayerPanel();
@@ -361,13 +286,7 @@ public class Window {
             this.interfacePanel.add(this.takeWaterButton);
         }
         if (this.regionHasBox()) {
-            this.grabBoxButton = new JButton("Prendre boite");
-            this.grabBoxButton.setBounds(360, 0, 100, 50);
-            this.grabBoxButton.setFont(new Font(FONT, Font.PLAIN, TEXT_FONT_SIZE));
-            this.grabBoxButton.setBackground(Color.BLACK);
-            this.grabBoxButton.setForeground(Color.WHITE);
-            this.grabBoxButton.setFocusPainted(false);
-            this.grabBoxButton.setBorder(new LineBorder(Color.WHITE));
+            this.grabBoxButton = new Button("Prendre boite", 360, 0, 100, 50, TEXT_FONT_SIZE);
             this.grabBoxButton.addActionListener(e -> {
                 player.takeBox(this.getBoxType());
                 this.removeBox();
@@ -376,13 +295,7 @@ public class Window {
             this.interfacePanel.add(this.grabBoxButton);
         }
 
-        this.returnButton = new JButton("Retour");
-        this.returnButton.setBounds(480, 0, 100, 50);
-        this.returnButton.setFont(new Font(FONT, Font.PLAIN, TEXT_FONT_SIZE));
-        this.returnButton.setBackground(Color.BLACK);
-        this.returnButton.setForeground(Color.WHITE);
-        this.returnButton.setFocusPainted(false);
-        this.returnButton.setBorder(new LineBorder(Color.WHITE));
+        this.returnButton = new Button("Retour", 480, 0, 100, 50, TEXT_FONT_SIZE);
         this.returnButton.addActionListener(e -> {
             this.hideTakeMenu();
         });
@@ -428,7 +341,7 @@ public class Window {
             this.mapPanel.setVisible(false);
             this.playerPanel.setVisible(false);
             this.interfacePanel.setVisible(false);
-            this.createDeathPanel();
+            this.createDeathScreen();
         }
     }
     private void hideTakeMenu() {
@@ -456,7 +369,7 @@ public class Window {
         "\n" +
         " # " + (regionPanel.get(player.getCurrentPosition()).containBox() ? "Il y a une boite ici !" : "Il ne semble pas y avoir de boite");
     }
-    private void createDeathPanel() {
+    private void createDeathScreen() {
         this.window.setSize(800, 600);
         this.window.setLocationRelativeTo(null);
 
@@ -478,55 +391,28 @@ public class Window {
             // TODO Add explantion text : "could not sleep when stamina = 100"
         }
 
-        this.sleepLabel = new JLabel("Dormir: ");
-        this.sleepLabel.setBounds(360, 200, 600, 90);
-        this.sleepLabel.setFont(new Font(FONT, Font.PLAIN, TITLE_FONT_SIZE));
-        this.sleepLabel.setForeground(Color.WHITE);
+        this.sleepLabel = new Label("Dormir: ", 360, 200, 600, 90, TITLE_FONT_SIZE);
         this.window.add(this.sleepLabel);
 
-        this.sleepHLabel = new JLabel("h");
-        this.sleepHLabel.setBounds(660, 200, 100, 90);
-        this.sleepHLabel.setFont(new Font(FONT, Font.PLAIN, TITLE_FONT_SIZE));
-        this.sleepHLabel.setForeground(Color.WHITE);
+        this.sleepHLabel = new Label("h", 660, 200, 100, 90, TITLE_FONT_SIZE);
         this.window.add(this.sleepHLabel);
 
-        this.sleepTimeLabel = new JLabel(String.valueOf(this.sleepTime));
-        this.sleepTimeLabel.setBounds(620, 200, 100, 90);
-        this.sleepTimeLabel.setFont(new Font(FONT, Font.PLAIN, TITLE_FONT_SIZE));
-        this.sleepTimeLabel.setForeground(Color.WHITE);
+        this.sleepTimeLabel = new Label(String.valueOf(this.sleepTime), 620, 200, 100, 90, TITLE_FONT_SIZE);
         this.window.add(this.sleepTimeLabel);
 
-        this.previousButton = new JButton("<");
-        this.previousButton.setBounds(500, 300, 80, 50);
-        this.previousButton.setFont(new Font(FONT, Font.PLAIN, MAIN_TEXT_FONT_SIZE));
-        this.previousButton.setBackground(Color.BLACK);
-        this.previousButton.setForeground(Color.WHITE);
-        this.previousButton.setFocusPainted(false);
-        this.previousButton.setBorder(new LineBorder(Color.WHITE));
+        this.previousButton = new Button("<", 500, 300, 80, 50, MAIN_TEXT_FONT_SIZE);
         this.previousButton.addActionListener(e -> {
             this.removeOneHour();
         });
         this.window.add(this.previousButton);
 
-        this.nextButton = new JButton(">");
-        this.nextButton.setBounds(600, 300, 80, 50);
-        this.nextButton.setFont(new Font(FONT, Font.PLAIN, MAIN_TEXT_FONT_SIZE));
-        this.nextButton.setBackground(Color.BLACK);
-        this.nextButton.setForeground(Color.WHITE);
-        this.nextButton.setFocusPainted(false);
-        this.nextButton.setBorder(new LineBorder(Color.WHITE));
+        this.nextButton = new Button(">", 600, 300, 80, 50, MAIN_TEXT_FONT_SIZE);
         this.nextButton.addActionListener(e -> {
             this.addOneHour();
         });
         this.window.add(this.nextButton);
 
-        this.validateSleepButton = new JButton("Dormir");
-        this.validateSleepButton.setBounds(500, 380, 160, 50);
-        this.validateSleepButton.setFont(new Font(FONT, Font.PLAIN, MAIN_TEXT_FONT_SIZE));
-        this.validateSleepButton.setBackground(Color.BLACK);
-        this.validateSleepButton.setForeground(Color.WHITE);
-        this.validateSleepButton.setFocusPainted(false);
-        this.validateSleepButton.setBorder(new LineBorder(Color.WHITE));
+        this.validateSleepButton = new Button("Dormir", 500, 380, 160, 50, MAIN_TEXT_FONT_SIZE);
         this.validateSleepButton.addActionListener(e -> {
             player.sleep(this.sleepTime);
             this.sleepTime = 0;
