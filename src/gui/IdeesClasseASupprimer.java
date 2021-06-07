@@ -4,7 +4,6 @@ public class IdeesClasseASupprimer {
 
     // TODO Score (en fonction du nombres de déplacement)
     // TODO Chasse
-    // TODO Animaux (ours, chiens, cerf)
     // TODO Check when cannot move
     // TODO Add key board control
     // TODO Sauvegarde

@@ -154,6 +154,9 @@ public class Player extends JPanel {
     }
     public void eat() {
         int quantity = this.maxHunger - this.hunger;
+        if (quantity > 10) {
+            quantity = 10;
+        }
         if (this.food >= quantity && this.hunger < this.maxHunger) {
             this.hunger += quantity;
             this.food -= quantity;
@@ -162,6 +165,9 @@ public class Player extends JPanel {
     }
     public void drink() {
         int quantity = this.maxThirst - this.thirst;
+        if (quantity > 10) {
+            quantity = 10;
+        }
         if (this.water >= quantity && this.thirst < this.maxThirst) {
             this.thirst += quantity;
             this.water -= quantity;

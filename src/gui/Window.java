@@ -1,5 +1,9 @@
 package gui;
 
+import gui.animal.Bear;
+import gui.animal.Deer;
+import gui.animal.Dog;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -186,6 +190,8 @@ public class Window {
         this.interfacePanel.update(this.interfacePanel.getGraphics());
 
         this.initializeBoxes();
+
+        this.initializeAnimal();
     }
     private void initializeRegionPanel() {
         ArrayList<String> names = new ArrayList<>();
@@ -270,7 +276,39 @@ public class Window {
 
     }
     private void initializeAnimal() {
+        for (Region region : regionPanel) {
 
+            // Bear
+            int bearChance = random.nextInt(100);
+            if (bearChance < 30) {
+                int bearQuantity = random.nextInt(2);
+                for (int i = 0; i < bearQuantity; i++) {
+                    region.addAnimal(new Bear());
+                    System.out.println("DEBUG: Add bear at position: " + region.getName());
+                }
+            }
+
+            // Dogs
+            int dogChance = random.nextInt(100);
+            if (dogChance < 50) {
+                int dogQuantity = random.nextInt(3);
+                for (int i = 0; i < dogQuantity; i++) {
+                    region.addAnimal(new Dog());
+                    System.out.println("DEBUG: Add dog at position: " + region.getName());
+                }
+            }
+
+            // Dogs
+            int deerChance = random.nextInt(100);
+            if (deerChance < 80) {
+                int deerQuantity = random.nextInt(4);
+                for (int i = 0; i < deerQuantity; i++) {
+                    region.addAnimal(new Deer());
+                    System.out.println("DEBUG: Add deer at position: " + region.getName());
+                }
+            }
+
+        }
     }
     private void showTakeInterface() {
         
@@ -390,7 +428,13 @@ public class Window {
     public static String displayCurrentPositionInfos() {
         return "Région\n" +
                 "\n" +
-                " # " + (regionPanel.get(player.getCurrentPosition()).containBox() ? "Il y a une boite ici !" : "Il ne semble pas y avoir de boite");
+                " # " + (regionPanel.get(player.getCurrentPosition()).containBox() ? "Il y a une boite ici !" : "Il ne semble pas y avoir de boite") +
+                "\n\n" +
+                "Animaux\n" +
+                "\n" +
+                " # Ours: " + (regionPanel.get(player.getCurrentPosition()).getNbBears()) + "\n" +
+                " # Chiens: " + (regionPanel.get(player.getCurrentPosition()).getNbDogs()) + "\n" +
+                " # Cerfs: " + (regionPanel.get(player.getCurrentPosition()).getNbDeers());
     }
     private void createDeathScreen() {
         this.window.setSize(800, 600);
