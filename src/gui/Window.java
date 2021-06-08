@@ -6,7 +6,9 @@ import gui.animal.Dog;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -27,8 +29,10 @@ public class Window {
 
     private JPanel mapPanel, playerPanel, compassPanel, interfacePanel;
     private static ArrayList<Region> regionPanel;
-    private JButton mainMenuButton, sleepButton, eatButton, drinkButton, takeButton, tameButton, huntButton, takeWaterButton, grabBoxButton, returnButton;
-    private JButton northButton, eastButton, southButton, westButton;
+    private JButton mainMenuButton, sleepButton, eatButton, drinkButton, takeButton; // Main interface
+    private JButton tameButton, huntButton, takeWaterButton, grabBoxButton, returnButton; // Take interface
+    private JButton bearButton, dogButton, deerButton; // Tame & Hunt interface
+    private JButton northButton, eastButton, southButton, westButton; // Compass
     private JLabel compassLabel;
     private JTextArea displayedText;
     private JButton nextTextButton;
@@ -71,6 +75,10 @@ public class Window {
         this.createTitleScreen();
 
         this.window.setVisible(true);
+    }
+    private void launchGame() {
+        this.createMapPanel();
+        this.actualizePlayerPanel();
     }
 
     public void createTitleScreen() {
@@ -139,10 +147,12 @@ public class Window {
         this.compassPanel.setLayout(new BorderLayout());
         this.interfacePanel.add(this.compassPanel);
     }
+    private void createDeathScreen() {
+        this.window.setSize(800, 600);
+        this.window.setLocationRelativeTo(null);
 
-    private void launchGame() {
-        this.createMapPanel();
-        this.actualizePlayerPanel();
+        this.deathLabel = new Label("Vous êtes mort", 260, 100, 300, 90, MAIN_TEXT_FONT_SIZE);
+        this.window.add(this.deathLabel);
     }
 
     private void createMapPanel() {
@@ -152,298 +162,11 @@ public class Window {
         regionPanel.get(player.getCurrentPosition()).add(player);
 
         this.initializeCompassPanel();
-
-        this.sleepButton = new Button("Dormir" , 120, 0, 100, 50, TEXT_FONT_SIZE);
-        this.sleepButton.addActionListener(e -> {
-            this.mapPanel.setVisible(false);
-            this.playerPanel.setVisible(false);
-            this.interfacePanel.setVisible(false);
-            this.createSleepTimeChoicePanel();
-        });
-        this.interfacePanel.add(this.sleepButton);
-
-        this.eatButton = new Button("Manger", 240, 0, 100, 50, TEXT_FONT_SIZE);
-        this.eatButton.addActionListener(e -> {
-            player.eat();
-            this.actualizePlayerPanel();
-        });
-        this.interfacePanel.add(this.eatButton);
-
-        this.drinkButton = new Button("Boire", 360, 0, 100, 50, TEXT_FONT_SIZE);
-        this.drinkButton.addActionListener(e -> {
-            player.drink();
-            this.actualizePlayerPanel();
-        });
-        this.interfacePanel.add(this.drinkButton);
-
-        this.takeButton = new Button("Prendre", 480, 0, 100, 50, TEXT_FONT_SIZE);
-        this.takeButton.addActionListener(e -> {
-            this.mainMenuButton.setVisible(false);
-            this.sleepButton.setVisible(false);
-            this.eatButton.setVisible(false);
-            this.drinkButton.setVisible(false);
-            this.takeButton.setVisible(false);
-            this.showTakeInterface();
-        });
-        this.interfacePanel.add(this.takeButton);
-
-        this.interfacePanel.update(this.interfacePanel.getGraphics());
-
+        this.initializeInterfaceButtons();
         this.initializeBoxes();
-
         this.initializeAnimal();
+        this.showMainInterface();
     }
-    private void initializeRegionPanel() {
-        ArrayList<String> names = new ArrayList<>();
-        names.add("North Swamp");     // 0
-        names.add("Mountain");        // 1
-        names.add("River");           // 2
-        names.add("North Clearing");  // 3
-        names.add("South Swamp");     // 4
-        names.add("North Lake");      // 5
-        names.add("West Clearing");   // 6
-        names.add("East Clearing");   // 7
-        names.add("Abandoned Hut");   // 8
-        names.add("South Lake");      // 9
-        names.add("Forest Entry");    // 10
-        names.add("Mine");            // 11
-
-        regionPanel = new ArrayList<>();
-        for (String name : names) {
-            Region region = new Region(name);
-            regionPanel.add(region);
-            this.mapPanel.add(region);
-        }
-    }
-    private void initializeCompassPanel() {
-        this.compassLabel = new JLabel("COMPASS");
-        this.compassLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        this.compassPanel.add(this.compassLabel, BorderLayout.CENTER);
-
-        this.northButton = this.initializeCompassButton("N", 0, 15, BorderLayout.NORTH);
-        this.northButton.addActionListener(e -> {
-            System.out.println("DEBUG: [Window.java] => NORTH");
-            this.move(Direction.NORTH);
-        });
-        this.eastButton = this.initializeCompassButton("E", 50, 0, BorderLayout.EAST);
-        this.eastButton.addActionListener(e -> {
-            System.out.println("DEBUG: [Window.java] => EAST");
-            this.move(Direction.EAST);
-        });
-        this.southButton = this.initializeCompassButton("S", 0, 15, BorderLayout.SOUTH);
-        this.southButton.addActionListener(e -> {
-            System.out.println("DEBUG: [Window.java] => SOUTH");
-            this.move(Direction.SOUTH);
-        });
-        this.westButton = this.initializeCompassButton("W", 50, 0, BorderLayout.WEST);
-        this.westButton.addActionListener(e -> {
-            System.out.println("DEBUG: [Window.java] => WEST");
-            this.move(Direction.WEST);
-        });
-    }
-    private JButton initializeCompassButton(String text, int width, int height, String borderLayout) {
-        JButton button = new Button(text, width, height, SMALL_TEXT_FONT_SIZE);
-        this.compassPanel.add(button, borderLayout);
-
-        return button;
-    }
-    private void initializeBoxes() {
-        this.boxLocalization = new HashMap<>();
-
-        // Magic Boxes
-        for (int i = 0; i < 3; i++) {
-            int position;
-            do {
-                position = random.nextInt(11);
-                System.out.println("DEBUG: Box created at position " + position);
-            } while (this.boxLocalization.get(position) != null);
-            Box box = new Box(100, Type.MAGIC, "MAGIC BOX");
-            regionPanel.get(position).addBox(box);
-            this.boxLocalization.put(position, box);
-        }
-
-        // Poison Boxes
-        for (int i = 0; i < 3; i++) {
-            int position;
-            do {
-                position = random.nextInt(11);
-                System.out.println("DEBUG: Box created at position " + position);
-            } while (this.boxLocalization.get(position) != null);
-            Box box = new Box(100, Type.POISON, "POISON BOX");
-            regionPanel.get(position).addBox(box);
-            this.boxLocalization.put(position, box);
-        }
-
-    }
-    private void initializeAnimal() {
-        for (Region region : regionPanel) {
-
-            // Bear
-            int bearChance = random.nextInt(100);
-            if (bearChance < 30) {
-                int bearQuantity = random.nextInt(2);
-                for (int i = 0; i < bearQuantity; i++) {
-                    region.addAnimal(new Bear());
-                    System.out.println("DEBUG: Add bear at position: " + region.getName());
-                }
-            }
-
-            // Dogs
-            int dogChance = random.nextInt(100);
-            if (dogChance < 50) {
-                int dogQuantity = random.nextInt(3);
-                for (int i = 0; i < dogQuantity; i++) {
-                    region.addAnimal(new Dog());
-                    System.out.println("DEBUG: Add dog at position: " + region.getName());
-                }
-            }
-
-            // Dogs
-            int deerChance = random.nextInt(100);
-            if (deerChance < 80) {
-                int deerQuantity = random.nextInt(4);
-                for (int i = 0; i < deerQuantity; i++) {
-                    region.addAnimal(new Deer());
-                    System.out.println("DEBUG: Add deer at position: " + region.getName());
-                }
-            }
-
-        }
-    }
-    private void showTakeInterface() {
-        
-        if (this.regionHasDog()) {
-            this.tameButton = new Button("Dresser", 0, 0, 100, 50, TEXT_FONT_SIZE);
-            this.tameButton.addActionListener(e -> {
-
-            });
-            this.interfacePanel.add(this.tameButton);
-        }
-
-        if (this.regionHasAnimal()) {
-            this.huntButton = new Button("Chasser", 120, 0, 100, 50, TEXT_FONT_SIZE);
-            this.huntButton.addActionListener(e -> {
-
-            });
-            this.interfacePanel.add(this.huntButton);
-        }
-        if (this.regionHasWater()) {
-            this.takeWaterButton = new Button("Prendre eau", 240, 0, 100, 50, TEXT_FONT_SIZE);
-            this.takeWaterButton.addActionListener(e -> {
-                player.takeWater();
-                this.actualizePlayerPanel();
-            });
-            this.interfacePanel.add(this.takeWaterButton);
-        }
-        if (this.regionHasBox()) {
-            this.grabBoxButton = new Button("Prendre boite", 360, 0, 100, 50, TEXT_FONT_SIZE);
-            this.grabBoxButton.addActionListener(e -> {
-                player.takeBox(this.getBoxType());
-                this.removeBox();
-                this.actualizePlayerPanel();
-            });
-            this.interfacePanel.add(this.grabBoxButton);
-        }
-
-        this.returnButton = new Button("Retour", 480, 0, 100, 50, TEXT_FONT_SIZE);
-        this.returnButton.addActionListener(e -> this.hideTakeMenu());
-        this.interfacePanel.add(this.returnButton);
-    }
-
-    private boolean regionHasDog() {
-        return this.getNbDogs() > 0;
-    }
-    private boolean regionHasAnimal() {
-        return this.getNbBears() > 0 || this.getNbDogs() > 0 ||this.getNbDeers() > 0;
-    }
-    private boolean regionHasWater() {
-        return player.getCurrentPosition() == 2 || player.getCurrentPosition() == 5 || player.getCurrentPosition() == 9;
-    }
-    private boolean regionHasBox() {
-        return regionPanel.get(player.getCurrentPosition()).containBox();
-    }
-
-    private int getNbBears() {
-        return regionPanel.get(player.getCurrentPosition()).getNbBears();
-    }
-    private int getNbDogs() {
-        return regionPanel.get(player.getCurrentPosition()).getNbDogs();
-    }
-    private int getNbDeers() {
-        return regionPanel.get(player.getCurrentPosition()).getNbDeers();
-    }
-
-    private Type getBoxType() {
-        return regionPanel.get(player.getCurrentPosition()).getBox().getType();
-    }
-    private void removeBox() {
-        regionPanel.get(player.getCurrentPosition()).removeBox();
-        this.grabBoxButton.setVisible(false);
-    }
-
-    private void actualizePlayerPanel() {
-        this.displayedText.setText(Text.PLAYER_STATUS());
-    }
-
-    private void move(Direction direction) {
-        int position = player.getCurrentPosition();
-        if (player.move(direction)) {
-            regionPanel.get(position).remove(player);
-            regionPanel.get(position).repaint();
-            regionPanel.get(player.getCurrentPosition()).add(player);
-            regionPanel.get(player.getCurrentPosition()).repaint();
-        }
-        this.hideTakeMenu();
-        this.actualizePlayerPanel();
-        if (!player.isAlive()) {
-            this.mapPanel.setVisible(false);
-            this.playerPanel.setVisible(false);
-            this.interfacePanel.setVisible(false);
-            this.createDeathScreen();
-        }
-    }
-    private void hideTakeMenu() {
-        if (this.tameButton != null) {
-            this.tameButton.setVisible(false);
-        }
-        if (this.huntButton != null) {
-            this.huntButton.setVisible(false);
-        }
-        if (this.takeWaterButton != null) {
-            this.takeWaterButton.setVisible(false);
-        }
-        if (this.grabBoxButton != null) {
-            this.grabBoxButton.setVisible(false);
-        }
-        if (this.returnButton != null) {
-            this.returnButton.setVisible(false);
-        }
-
-        this.mainMenuButton.setVisible(true);
-        this.sleepButton.setVisible(true);
-        this.eatButton.setVisible(true);
-        this.drinkButton.setVisible(true);
-        this.takeButton.setVisible(true);
-    }
-    public static String displayCurrentPositionInfos() {
-        return "Région\n" +
-                "\n" +
-                " # " + (regionPanel.get(player.getCurrentPosition()).containBox() ? "Il y a une boite ici !" : "Il ne semble pas y avoir de boite") +
-                "\n\n" +
-                "Animaux\n" +
-                "\n" +
-                " # Ours: " + (regionPanel.get(player.getCurrentPosition()).getNbBears()) + "\n" +
-                " # Chiens: " + (regionPanel.get(player.getCurrentPosition()).getNbDogs()) + "\n" +
-                " # Cerfs: " + (regionPanel.get(player.getCurrentPosition()).getNbDeers());
-    }
-    private void createDeathScreen() {
-        this.window.setSize(800, 600);
-        this.window.setLocationRelativeTo(null);
-
-        this.deathLabel = new Label("Vous êtes mort", 260, 100, 300, 90, MAIN_TEXT_FONT_SIZE);
-        this.window.add(this.deathLabel);
-    }
-
     private void createSleepTimeChoicePanel() {
         if (player.getStamina() == 100 || player.getHunger() == 0 || player.getThirst() == 0) {
             this.mapPanel.setVisible(true);
@@ -491,6 +214,374 @@ public class Window {
         });
         this.window.add(this.validateSleepButton);
     }
+
+    private void initializeInterfaceButtons() {
+        this.initializeMainInterfaceButtons();
+        this.initializeTakeInterfaceButtons();
+        this.initializeAnimalInterfaceButtons();
+        this.returnButton = new Button("Retour", 480, 0, 100, 50, TEXT_FONT_SIZE);
+        this.returnButton.setVisible(false);
+        this.interfacePanel.add(this.returnButton);
+        this.interfacePanel.update(this.interfacePanel.getGraphics());
+    }
+    private void initializeMainInterfaceButtons() {
+        this.sleepButton = new Button("Dormir" , 120, 0, 100, 50, TEXT_FONT_SIZE);
+        this.sleepButton.addActionListener(e -> {
+            this.mapPanel.setVisible(false);
+            this.playerPanel.setVisible(false);
+            this.interfacePanel.setVisible(false);
+            this.createSleepTimeChoicePanel();
+        });
+        this.interfacePanel.add(this.sleepButton);
+        this.sleepButton.setVisible(false);
+
+        this.eatButton = new Button("Manger", 240, 0, 100, 50, TEXT_FONT_SIZE);
+        this.eatButton.addActionListener(e -> {
+            player.eat();
+            this.actualizePlayerPanel();
+        });
+        this.interfacePanel.add(this.eatButton);
+        this.eatButton.setVisible(false);
+
+        this.drinkButton = new Button("Boire", 360, 0, 100, 50, TEXT_FONT_SIZE);
+        this.drinkButton.addActionListener(e -> {
+            player.drink();
+            this.actualizePlayerPanel();
+        });
+        this.interfacePanel.add(this.drinkButton);
+        this.drinkButton.setVisible(false);
+
+        this.takeButton = new Button("Prendre", 480, 0, 100, 50, TEXT_FONT_SIZE);
+        this.takeButton.addActionListener(e -> {
+            this.hideMainInterface();
+            this.showTakeInterface();
+        });
+        this.interfacePanel.add(this.takeButton);
+        this.takeButton.setVisible(false);
+    }
+    private void initializeTakeInterfaceButtons() {
+        this.tameButton = new Button("Dresser", 0, 0, 100, 50, TEXT_FONT_SIZE);
+        this.tameButton.addActionListener(e -> {
+            this.hideTakeInterface();
+            this.showTameInterface();
+        });
+        this.interfacePanel.add(this.tameButton);
+        this.tameButton.setVisible(false);
+
+        this.huntButton = new Button("Chasser", 120, 0, 100, 50, TEXT_FONT_SIZE);
+        this.huntButton.addActionListener(e -> {
+            this.hideTakeInterface();
+            this.showHuntInterface();
+        });
+        this.interfacePanel.add(this.huntButton);
+        this.huntButton.setVisible(false);
+
+        this.takeWaterButton = new Button("Prendre eau", 240, 0, 100, 50, TEXT_FONT_SIZE);
+        this.takeWaterButton.addActionListener(e -> {
+            player.takeWater();
+            this.actualizePlayerPanel();
+        });
+        this.interfacePanel.add(this.takeWaterButton);
+        this.takeWaterButton.setVisible(false);
+
+        this.grabBoxButton = new Button("Prendre boite", 360, 0, 100, 50, TEXT_FONT_SIZE);
+        this.grabBoxButton.addActionListener(e -> {
+            player.takeBox(this.getBoxType());
+            this.removeBox();
+            this.actualizePlayerPanel();
+        });
+        this.interfacePanel.add(this.grabBoxButton);
+        this.grabBoxButton.setVisible(false);
+    }
+    private void initializeAnimalInterfaceButtons() {
+        this.bearButton = new Button("Ours", 120, 0, 100, 50, TEXT_FONT_SIZE);
+        this.interfacePanel.add(this.bearButton);
+        this.bearButton.setVisible(false);
+
+        this.dogButton = new Button("Chien", 240, 0, 100, 50, TEXT_FONT_SIZE);
+        this.interfacePanel.add(this.dogButton);
+        this.dogButton.setVisible(false);
+
+        this.deerButton = new Button("Cerf", 360, 0, 100, 50, TEXT_FONT_SIZE);
+        this.interfacePanel.add(this.deerButton);
+        this.deerButton.setVisible(false);
+    }
+
+    private void initializeRegionPanel() {
+        ArrayList<String> names = new ArrayList<>();
+        names.add("North Swamp");     // 0
+        names.add("Mountain");        // 1
+        names.add("River");           // 2
+        names.add("North Clearing");  // 3
+        names.add("South Swamp");     // 4
+        names.add("North Lake");      // 5
+        names.add("West Clearing");   // 6
+        names.add("East Clearing");   // 7
+        names.add("Abandoned Hut");   // 8
+        names.add("South Lake");      // 9
+        names.add("Forest Entry");    // 10
+        names.add("Mine");            // 11
+
+        regionPanel = new ArrayList<>();
+        for (String name : names) {
+            Region region = new Region(name);
+            regionPanel.add(region);
+            this.mapPanel.add(region);
+        }
+    }
+    private void initializeCompassPanel() {
+        this.compassLabel = new JLabel("COMPASS");
+        this.compassLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        this.compassPanel.add(this.compassLabel, BorderLayout.CENTER);
+
+        this.northButton = this.initializeCompassButton("N", 0, 15, BorderLayout.NORTH);
+        this.northButton.addActionListener(e -> {
+//            System.out.println("DEBUG: [Window.java] => NORTH");
+            this.move(Direction.NORTH);
+        });
+        this.eastButton = this.initializeCompassButton("E", 50, 0, BorderLayout.EAST);
+        this.eastButton.addActionListener(e -> {
+//            System.out.println("DEBUG: [Window.java] => EAST");
+            this.move(Direction.EAST);
+        });
+        this.southButton = this.initializeCompassButton("S", 0, 15, BorderLayout.SOUTH);
+        this.southButton.addActionListener(e -> {
+//            System.out.println("DEBUG: [Window.java] => SOUTH");
+            this.move(Direction.SOUTH);
+        });
+        this.westButton = this.initializeCompassButton("W", 50, 0, BorderLayout.WEST);
+        this.westButton.addActionListener(e -> {
+//            System.out.println("DEBUG: [Window.java] => WEST");
+            this.move(Direction.WEST);
+        });
+    }
+    private JButton initializeCompassButton(String text, int width, int height, String borderLayout) {
+        JButton button = new Button(text, width, height, SMALL_TEXT_FONT_SIZE);
+        this.compassPanel.add(button, borderLayout);
+
+        return button;
+    }
+    private void initializeBoxes() {
+        this.boxLocalization = new HashMap<>();
+
+        // Magic Boxes
+        for (int i = 0; i < 3; i++) {
+            int position;
+            do {
+                position = random.nextInt(11);
+//                System.out.println("DEBUG: Box created at position " + position);
+            } while (this.boxLocalization.get(position) != null);
+            Box box = new Box(100, Type.MAGIC, "MAGIC BOX");
+            regionPanel.get(position).addBox(box);
+            this.boxLocalization.put(position, box);
+        }
+
+        // Poison Boxes
+        for (int i = 0; i < 3; i++) {
+            int position;
+            do {
+                position = random.nextInt(11);
+//                System.out.println("DEBUG: Box created at position " + position);
+            } while (this.boxLocalization.get(position) != null);
+            Box box = new Box(100, Type.POISON, "POISON BOX");
+            regionPanel.get(position).addBox(box);
+            this.boxLocalization.put(position, box);
+        }
+
+    }
+    private void initializeAnimal() {
+        for (Region region : regionPanel) {
+
+            // Bear
+            int bearChance = random.nextInt(100);
+            if (bearChance < 30) {
+                int bearQuantity = random.nextInt(2);
+                for (int i = 0; i < bearQuantity; i++) {
+                    region.addAnimal(new Bear());
+//                    System.out.println("DEBUG: Add bear at position: " + region.getName());
+                }
+            }
+
+            // Dogs
+            int dogChance = random.nextInt(100);
+            if (dogChance < 50) {
+                int dogQuantity = random.nextInt(3);
+                for (int i = 0; i < dogQuantity; i++) {
+                    region.addAnimal(new Dog());
+//                    System.out.println("DEBUG: Add dog at position: " + region.getName());
+                }
+            }
+
+            // Dogs
+            int deerChance = random.nextInt(100);
+            if (deerChance < 80) {
+                int deerQuantity = random.nextInt(4);
+                for (int i = 0; i < deerQuantity; i++) {
+                    region.addAnimal(new Deer());
+//                    System.out.println("DEBUG: Add deer at position: " + region.getName());
+                }
+            }
+
+        }
+    }
+
+    private void showMainInterface() {
+        System.out.println("Show main interface");
+        this.mainMenuButton.setVisible(true);
+        this.sleepButton.setVisible(true);
+        this.eatButton.setVisible(true);
+        this.drinkButton.setVisible(true);
+        this.takeButton.setVisible(true);
+        this.interfacePanel.update(this.interfacePanel.getGraphics());
+    }
+    private void hideMainInterface() {
+        this.mainMenuButton.setVisible(false);
+        this.sleepButton.setVisible(false);
+        this.eatButton.setVisible(false);
+        this.drinkButton.setVisible(false);
+        this.takeButton.setVisible(false);
+        this.interfacePanel.update(this.interfacePanel.getGraphics());
+    }
+
+    private void showTakeInterface() {
+        System.out.println("Show take interface");
+        if (this.regionHasDog()) {
+            this.tameButton.setVisible(true);
+        }
+        if (this.regionHasAnimal()) {
+            this.huntButton.setVisible(true);
+        }
+        if (this.regionHasWater()) {
+            this.takeWaterButton.setVisible(true);
+        }
+        if (this.regionHasBox()) {
+            this.grabBoxButton.setVisible(true);
+        }
+
+        for (ActionListener al : this.returnButton.getActionListeners()) {
+            this.returnButton.removeActionListener(al);
+        }
+        this.returnButton.addActionListener(e -> {
+            this.hideTakeInterface();
+            this.showMainInterface();
+        });
+//        this.interfacePanel.add(this.returnButton);
+        this.returnButton.setVisible(true);
+        this.interfacePanel.update(this.interfacePanel.getGraphics());
+    }
+    private void hideTakeInterface() {
+        if (this.tameButton != null) {
+            this.tameButton.setVisible(false);
+        }
+        if (this.huntButton != null) {
+            this.huntButton.setVisible(false);
+        }
+        if (this.takeWaterButton != null) {
+            this.takeWaterButton.setVisible(false);
+        }
+        if (this.grabBoxButton != null) {
+            this.grabBoxButton.setVisible(false);
+        }
+    }
+
+    private void showTameInterface() {
+        this.showAnimalInterface();
+    }
+    private void showHuntInterface() {
+        this.showAnimalInterface();
+    }
+    private void showAnimalInterface() {
+        System.out.println("Show animal interface");
+        this.bearButton.setVisible(true);
+        this.dogButton.setVisible(true);
+        this.deerButton.setVisible(true);
+        this.returnButton.setVisible(true);
+        for (ActionListener al : this.returnButton.getActionListeners()) {
+            this.returnButton.removeActionListener(al);
+        }
+        this.returnButton.addActionListener(e -> {
+            this.hideAnimalInterface();
+            this.showTakeInterface();
+        });
+        this.interfacePanel.update(this.interfacePanel.getGraphics());
+    }
+    private void hideAnimalInterface() {
+        if (this.bearButton != null) {
+            this.bearButton.setVisible(false);
+        }
+        if (this.dogButton != null) {
+            this.dogButton.setVisible(false);
+        }
+        if (this.deerButton != null) {
+            this.deerButton.setVisible(false);
+        }
+    }
+
+    private boolean regionHasDog() {
+        return this.getNbDogs() > 0;
+    }
+    private boolean regionHasAnimal() {
+        return this.getNbBears() > 0 || this.getNbDogs() > 0 ||this.getNbDeers() > 0;
+    }
+    private boolean regionHasWater() {
+        return player.getCurrentPosition() == 2 || player.getCurrentPosition() == 5 || player.getCurrentPosition() == 9;
+    }
+    private boolean regionHasBox() {
+        return regionPanel.get(player.getCurrentPosition()).containBox();
+    }
+
+    private int getNbBears() {
+        return regionPanel.get(player.getCurrentPosition()).getNbBears();
+    }
+    private int getNbDogs() {
+        return regionPanel.get(player.getCurrentPosition()).getNbDogs();
+    }
+    private int getNbDeers() {
+        return regionPanel.get(player.getCurrentPosition()).getNbDeers();
+    }
+
+    private Type getBoxType() {
+        return regionPanel.get(player.getCurrentPosition()).getBox().getType();
+    }
+    private void removeBox() {
+        regionPanel.get(player.getCurrentPosition()).removeBox();
+        this.grabBoxButton.setVisible(false);
+    }
+
+    private void actualizePlayerPanel() {
+        this.displayedText.setText(Text.PLAYER_STATUS());
+    }
+
+    private void move(Direction direction) {
+        int position = player.getCurrentPosition();
+        if (player.move(direction)) {
+            regionPanel.get(position).remove(player);
+            regionPanel.get(position).repaint();
+            regionPanel.get(player.getCurrentPosition()).add(player);
+            regionPanel.get(player.getCurrentPosition()).repaint();
+        }
+        this.showMainInterface();
+        this.actualizePlayerPanel();
+        if (!player.isAlive()) {
+            this.mapPanel.setVisible(false);
+            this.playerPanel.setVisible(false);
+            this.interfacePanel.setVisible(false);
+            this.createDeathScreen();
+        }
+    }
+
+    public static String displayCurrentPositionInfos() {
+        return "Région\n" +
+                "\n" +
+                " # " + (regionPanel.get(player.getCurrentPosition()).containBox() ? "Il y a une boite ici !" : "Il ne semble pas y avoir de boite") +
+                "\n\n" +
+                "Animaux\n" +
+                "\n" +
+                " # Ours: " + (regionPanel.get(player.getCurrentPosition()).getNbBears()) + "\n" +
+                " # Chiens: " + (regionPanel.get(player.getCurrentPosition()).getNbDogs()) + "\n" +
+                " # Cerfs: " + (regionPanel.get(player.getCurrentPosition()).getNbDeers());
+    }
+
     private void removeOneHour() {
         this.sleepTime -= 1;
         if (this.sleepTime < 0) {
