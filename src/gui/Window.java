@@ -8,7 +8,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -148,6 +147,10 @@ public class Window {
         this.interfacePanel.add(this.compassPanel);
     }
     private void createDeathScreen() {
+        this.mapPanel.setVisible(false);
+        this.playerPanel.setVisible(false);
+        this.interfacePanel.setVisible(false);
+
         this.window.setSize(800, 600);
         this.window.setLocationRelativeTo(null);
 
@@ -262,8 +265,7 @@ public class Window {
     private void initializeTakeInterfaceButtons() {
         this.tameButton = new Button("Dresser", 0, 0, 100, 50, TEXT_FONT_SIZE);
         this.tameButton.addActionListener(e -> {
-            this.hideTakeInterface();
-            this.showTameInterface();
+            this.tame();
         });
         this.interfacePanel.add(this.tameButton);
         this.tameButton.setVisible(false);
@@ -454,7 +456,6 @@ public class Window {
             this.hideTakeInterface();
             this.showMainInterface();
         });
-//        this.interfacePanel.add(this.returnButton);
         this.returnButton.setVisible(true);
         this.interfacePanel.update(this.interfacePanel.getGraphics());
     }
@@ -473,11 +474,26 @@ public class Window {
         }
     }
 
-    private void showTameInterface() {
-        this.showAnimalInterface();
-    }
     private void showHuntInterface() {
-        this.showAnimalInterface();
+        if (this.regionHasBear()) {
+            this.bearButton.setVisible(true);
+        }
+        if (this.regionHasDog()) {
+            this.dogButton.setVisible(true);
+        }
+        if (this.regionHasDeer()) {
+            this.deerButton.setVisible(true);
+        }
+
+        for (ActionListener al : this.returnButton.getActionListeners()) {
+            this.returnButton.removeActionListener(al);
+        }
+        this.returnButton.addActionListener(e -> {
+            this.hideAnimalInterface();
+            this.showTakeInterface();
+        });
+        this.returnButton.setVisible(true);
+        this.interfacePanel.update(this.interfacePanel.getGraphics());
 
         // Bear
         for (ActionListener al : this.bearButton.getActionListeners()) {
@@ -506,27 +522,6 @@ public class Window {
             this.actualizePlayerPanel();
         });
     }
-    private void showAnimalInterface() {
-        if (this.regionHasBear()) {
-            this.bearButton.setVisible(true);
-        }
-        if (this.regionHasDog()) {
-            this.dogButton.setVisible(true);
-        }
-        if (this.regionHasDeer()) {
-            this.deerButton.setVisible(true);
-        }
-
-        for (ActionListener al : this.returnButton.getActionListeners()) {
-            this.returnButton.removeActionListener(al);
-        }
-        this.returnButton.addActionListener(e -> {
-            this.hideAnimalInterface();
-            this.showTakeInterface();
-        });
-        this.returnButton.setVisible(true);
-        this.interfacePanel.update(this.interfacePanel.getGraphics());
-    }
     private void hideAnimalInterface() {
         if (this.bearButton != null) {
             this.bearButton.setVisible(false);
@@ -554,44 +549,77 @@ public class Window {
         return regionPanel.get(player.getCurrentPosition()).containBox();
     }
 
+    private void tame() {
+        // TODO Tame
+        if (regionHasDog()) {
+            int tame = random.nextInt(100);
+            if (tame < Dog.getRiposteChance()) {
+                player.setHealth(player.getHealth() - Dog.getAttack());
+                this.checkAlive();
+            } else {
+                // TODO Add dog to player
+                this.removeDog();
+            }
+        }
+    }
+    private void removeDog() {
+        regionPanel.get(player.getCurrentPosition()).removeDog();
+        if (!this.regionHasDog()) {
+            this.tameButton.setVisible(false);
+        }
+        this.actualizePlayerPanel();
+    }
+
     private void killBear() {
         HuntResult result = regionPanel.get(player.getCurrentPosition()).killBear();
         if (result == HuntResult.KILL) {
-            player.setFood(player.getFood() + Bear.getFood());
+            if (player.getFood() + Bear.getFood() + player.getWeight() > player.getMaxWeight()) {
+                System.out.println("DEBUG: No more room for the food");
+            } else {
+                player.setFood(player.getFood() + Bear.getFood());
+            }
         } else if (result == HuntResult.RIPOSTE) {
             player.setHealth(player.getHealth() - Bear.getAttack());
-            // TODO Check if dead
+            this.checkAlive();
         } else if (result == HuntResult.NO_ANIMAL) {
             // TODO Print on menu
             System.out.println("DEBUG: No bear");
         }
-        this.showAnimalInterface();
+        this.showHuntInterface();
     }
     private void killDog() {
         HuntResult result = regionPanel.get(player.getCurrentPosition()).killDog();
         if (result == HuntResult.KILL) {
-            player.setFood(player.getFood() + Dog.getFood());
+            if (player.getFood() + Dog.getFood() + player.getWeight() > player.getMaxWeight()) {
+                System.out.println("DEBUG: No more room for the food");
+            } else {
+                player.setFood(player.getFood() + Dog.getFood());
+            }
         } else if (result == HuntResult.RIPOSTE) {
             player.setHealth(player.getHealth() - Dog.getAttack());
-            // TODO Check if dead
+            this.checkAlive();
         } else if (result == HuntResult.NO_ANIMAL) {
             // TODO Print on menu
             System.out.println("DEBUG: No dog");
         }
-        this.showAnimalInterface();
+        this.showHuntInterface();
     }
     private void killDeer() {
         HuntResult result = regionPanel.get(player.getCurrentPosition()).killDeer();
         if (result == HuntResult.KILL) {
-            player.setFood(player.getFood() + Deer.getFood());
+            if (player.getFood() + Deer.getFood() + player.getWeight() > player.getMaxWeight()) {
+                System.out.println("DEBUG: No more room for the food");
+            } else {
+                player.setFood(player.getFood() + Deer.getFood());
+            }
         } else if (result == HuntResult.RIPOSTE) {
             player.setHealth(player.getHealth() - Deer.getAttack());
-            // TODO Check if dead
+            this.checkAlive();
         } else if (result == HuntResult.NO_ANIMAL) {
             // TODO Print on menu
             System.out.println("DEBUG: No deer");
         }
-        this.showAnimalInterface();
+        this.showHuntInterface();
     }
 
     private int getNbBears() {
@@ -626,10 +654,11 @@ public class Window {
         }
         this.showMainInterface();
         this.actualizePlayerPanel();
+        this.checkAlive();
+    }
+    private void checkAlive() {
+        player.checkAlive();
         if (!player.isAlive()) {
-            this.mapPanel.setVisible(false);
-            this.playerPanel.setVisible(false);
-            this.interfacePanel.setVisible(false);
             this.createDeathScreen();
         }
     }

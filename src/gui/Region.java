@@ -62,6 +62,17 @@ public class Region extends JPanel {
         this.animals.add(animal);
     }
 
+    public void removeDog() {
+        if (this.getNbDogs() > 0) {
+            for (Animal animal : this.animals) {
+                if (animal.getSpecies().equals("Dog")) {
+                    this.animals.remove(animal);
+                    return;
+                }
+            }
+        }
+    }
+
     public HuntResult killBear() {
         if (this.getNbBears() > 0) {
             int riposte = random.nextInt(100);

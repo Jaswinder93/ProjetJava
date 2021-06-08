@@ -53,58 +53,49 @@ public class Player extends JPanel {
         switch (direction) {
             case NORTH:
                 if (this.currentPosition - 4 < 0) {
-                    System.out.println("DEBUG: [Player.java] => Cannot move north");
                     return false;
                 } else {
                     if (this.checkHealthCondition()) {
                         return false;
                     }
                     this.currentPosition -= 4;
-                    System.out.println("DEBUG: Current position => " + currentPosition);
                     return true;
                 }
 
             case EAST:
                 if (this.currentPosition + 1 == 4 || this.currentPosition + 1 == 8 || this.currentPosition + 1 == 12) {
-                    System.out.println("DEBUG: [Player.java] => Cannot move east");
                     return false;
                 } else {
                     if (this.checkHealthCondition()) {
                         return false;
                     }
                     this.currentPosition += 1;
-                    System.out.println("DEBUG: Current position => " + currentPosition);
                     return true;
                 }
 
             case SOUTH:
                 if (this.currentPosition + 4 > 11) {
-                    System.out.println("DEBUG: [Player.java] => Cannot move south");
                     return false;
                 } else {
                     if (this.checkHealthCondition()) {
                         return false;
                     }
                     this.currentPosition += 4;
-                    System.out.println("DEBUG: Current position => " + currentPosition);
                     return true;
                 }
 
             case WEST:
                 if (this.currentPosition - 1 == -1 || this.currentPosition - 1 == 3 || this.currentPosition - 1 == 7) {
-                    System.out.println("DEBUG: [Player.java] => Cannot move west");
                     return false;
                 } else {
                     if (this.checkHealthCondition()) {
                         return false;
                     }
                     this.currentPosition -= 1;
-                    System.out.println("DEBUG: Current position => " + currentPosition);
                     return true;
                 }
 
             default:
-                System.out.println("DEBUG: [Player.java] => Incorrect direction");
                 return false;
         }
 
@@ -126,13 +117,16 @@ public class Player extends JPanel {
 
         if (this.hunger == 0 || this.thirst == 0) {
             this.health -= 10;
-            if (this.health < 0 || this.health == 0) {
-                this.health = 0;
-                this.alive = false;
-            }
+            this.checkAlive();
         }
 
         return false;
+    }
+    public void checkAlive() {
+        if (this.health <= 0) {
+            this.health = 0;
+            this.alive = false;
+        }
     }
 
     public void sleep(int time) {

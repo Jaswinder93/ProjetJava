@@ -3,7 +3,9 @@ package gui;
 public class IdeesClasseASupprimer {
 
     // TODO Score (en fonction du nombres de déplacement)
-    // TODO Chasse
+    // TODO boite neutre ?
+    // TODO Dressage
+    // TODO Add use to dog
     // TODO Check when cannot move
     // TODO Add key board control
     // TODO Sauvegarde
