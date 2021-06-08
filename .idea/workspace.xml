@@ -22,12 +22,9 @@
     <list default="true" id="6f09b0c1-9b71-4a00-b9d6-e84b4fee9357" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Kanji/gui/Window.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Kanji/gui/Window.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/IdeesClasseASupprimer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/IdeesClasseASupprimer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gui/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/Region.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/Region.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/Text.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/Text.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gui/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/Window.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/animal/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/animal/Animal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/animal/Bear.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/animal/Bear.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,7 +171,7 @@
       <workItem from="1622575812397" duration="2397000" />
       <workItem from="1623044446949" duration="1507000" />
       <workItem from="1623066594366" duration="7649000" />
-      <workItem from="1623149905611" duration="5990000" />
+      <workItem from="1623149905611" duration="7632000" />
     </task>
     <servers />
   </component>

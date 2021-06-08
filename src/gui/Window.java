@@ -87,7 +87,7 @@ public class Window {
         this.titleLabel = new Label("Kanji", 320, 100, 200, 90, TITLE_FONT_SIZE);
         this.window.add(this.titleLabel);
 
-        this.startButton = new Button("Start", 350, 400, 100, 50, MAIN_TEXT_FONT_SIZE);
+        this.startButton = new Button("Jouer", 350, 400, 100, 50, MAIN_TEXT_FONT_SIZE);
         this.startButton.addActionListener(e -> {
             this.titleLabel.setVisible(false);
             this.startButton.setVisible(false);
@@ -116,10 +116,10 @@ public class Window {
         this.displayedText.setForeground(Color.WHITE);
         this.playerPanel.add(this.displayedText);
 
-        this.nextTextButton = new Button("Next",200, 50, TEXT_FONT_SIZE);
+        this.nextTextButton = new Button("Suivant",200, 50, TEXT_FONT_SIZE);
         this.nextTextButton.addActionListener(e -> {
             this.displayedText.setText(Text.WELCOME_STRING_2());
-            this.nextTextButton.setText("Start Adventure");
+            this.nextTextButton.setText("Commencer l'aventure");
             this.nextTextButton.removeActionListener(this.nextTextButton.getActionListeners()[0]);
             this.nextTextButton.addActionListener(e1 -> {
                 this.mapPanel.setBorder(null);
@@ -133,7 +133,7 @@ public class Window {
         this.interfacePanel.setLayout(null);
         this.window.add(this.interfacePanel);
 
-        this.mainMenuButton = new Button("Main Menu", 0, 0, 100, 50, TEXT_FONT_SIZE);
+        this.mainMenuButton = new Button("Menu", 0, 0, 100, 50, TEXT_FONT_SIZE);
         this.mainMenuButton.addActionListener(e -> {
             this.mapPanel.setVisible(false);
             this.playerPanel.setVisible(false);
@@ -332,7 +332,7 @@ public class Window {
         }
     }
     private void initializeCompassPanel() {
-        this.compassLabel = new JLabel("COMPASS");
+        this.compassLabel = new JLabel("BOUSSOLE");
         this.compassLabel.setHorizontalAlignment(SwingConstants.CENTER);
         this.compassPanel.add(this.compassLabel, BorderLayout.CENTER);
 
@@ -550,20 +550,19 @@ public class Window {
     }
 
     private void tame() {
-        // TODO Tame
         if (regionHasDog()) {
             int tame = random.nextInt(100);
             if (tame < Dog.getRiposteChance()) {
                 player.setHealth(player.getHealth() - Dog.getAttack());
                 this.checkAlive();
             } else {
-                // TODO Add dog to player
                 this.removeDog();
             }
         }
     }
     private void removeDog() {
         regionPanel.get(player.getCurrentPosition()).removeDog();
+        player.addDog();
         if (!this.regionHasDog()) {
             this.tameButton.setVisible(false);
         }
@@ -577,6 +576,9 @@ public class Window {
                 System.out.println("DEBUG: No more room for the food");
             } else {
                 player.setFood(player.getFood() + Bear.getFood());
+                if (!this.regionHasBear()) {
+                    this.bearButton.setVisible(false);
+                }
             }
         } else if (result == HuntResult.RIPOSTE) {
             player.setHealth(player.getHealth() - Bear.getAttack());
@@ -594,6 +596,9 @@ public class Window {
                 System.out.println("DEBUG: No more room for the food");
             } else {
                 player.setFood(player.getFood() + Dog.getFood());
+                if (!this.regionHasDog()) {
+                    this.dogButton.setVisible(false);
+                }
             }
         } else if (result == HuntResult.RIPOSTE) {
             player.setHealth(player.getHealth() - Dog.getAttack());
@@ -611,6 +616,9 @@ public class Window {
                 System.out.println("DEBUG: No more room for the food");
             } else {
                 player.setFood(player.getFood() + Deer.getFood());
+                if (!this.regionHasDeer()) {
+                    this.deerButton.setVisible(false);
+                }
             }
         } else if (result == HuntResult.RIPOSTE) {
             player.setHealth(player.getHealth() - Deer.getAttack());

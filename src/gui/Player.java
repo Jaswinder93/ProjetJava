@@ -28,7 +28,7 @@ public class Player extends JPanel {
     private int stamina = 100;
     private int maxStamina = 100;
     private int weight;
-    private int maxWeight = 1000;
+    private int maxWeight = 200;
     private int food = 20;
     private int water = 20;
     private int nbMagicBox = 0;
@@ -37,6 +37,7 @@ public class Player extends JPanel {
     // GAME RELATIVE
 
     private int currentPosition;
+    private int nbDogs = 0;
 
     // CONSTRUCTORS
 
@@ -183,6 +184,15 @@ public class Player extends JPanel {
         }
     }
 
+    public void addDog() {
+        this.nbDogs += 1;
+        this.maxWeight += 50;
+    }
+    public void removeDog() {
+        this.nbDogs -= 1;
+        this.maxWeight -= 50; // TODO Check if weight > maxWeight => cannot move ?
+    }
+
     // GETTERS
 
     public int getHealth() {
@@ -227,6 +237,7 @@ public class Player extends JPanel {
         return this.nbPoisonBox;
     }
 
+    public int getNbDogs() { return this.nbDogs; }
     public int getCurrentPosition() {
         return this.currentPosition;
     }
@@ -235,5 +246,7 @@ public class Player extends JPanel {
 
     public void setHealth(int health) { this.health = health; }
     public void setFood(int food) { this.food = food; }
+
+    public void setNbDogs(int dogs) { this.nbDogs = dogs; }
 
 }

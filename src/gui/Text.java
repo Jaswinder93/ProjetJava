@@ -2,6 +2,7 @@ package gui;
 
 public class Text {
 
+    // TODO Réécrire textes intro
     public static String WELCOME_STRING_1() {
         return "Bienvenue dans la fôret !\n" +
                 "Aujourd'hui vous allez devoir faire preuve de courage...\n" +
@@ -35,6 +36,7 @@ public class Text {
                 " # Eau: " + Window.getPlayer().getWater() + "\n" +
                 " # Boite magique: " + Window.getPlayer().getNbMagicBox() + " / 3\n" +
                 " # Boite poison: " + Window.getPlayer().getNbPoisonBox() + " / 3\n" +
+                " # Chiens: " + Window.getPlayer().getNbDogs() + "\n" +
                 "\n" +
                 Window.displayCurrentPositionInfos();
     }
