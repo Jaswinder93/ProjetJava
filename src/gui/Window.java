@@ -36,6 +36,7 @@ public class Window {
     private JTextArea displayedText;
     private JButton nextTextButton;
     private HashMap<Integer, Box> boxLocalization;
+    private JTextArea infosUser; // TODO InfosUser
 
     private final String FONT = "Book Antiqua";
     private final int TITLE_FONT_SIZE = 70;
@@ -145,6 +146,16 @@ public class Window {
         this.compassPanel = new Panel(600, 0, 200, 50, false);
         this.compassPanel.setLayout(new BorderLayout());
         this.interfacePanel.add(this.compassPanel);
+
+        this.infosUser = new JTextArea();
+        this.infosUser.setPreferredSize(new Dimension(230, 50));
+        this.infosUser.setFont(new Font(FONT, Font.PLAIN, SMALL_TEXT_FONT_SIZE));
+        this.infosUser.setLineWrap(true);
+        this.infosUser.setWrapStyleWord(true);
+        this.infosUser.setEnabled(false);
+        this.infosUser.setBackground(Color.BLACK);
+        this.infosUser.setVisible(false);
+        this.playerPanel.add(this.infosUser);
     }
     private void createDeathScreen() {
         this.mapPanel.setVisible(false);
@@ -175,6 +186,8 @@ public class Window {
             this.mapPanel.setVisible(true);
             this.playerPanel.setVisible(true);
             this.interfacePanel.setVisible(true);
+
+            this.setInfosUserText("Vous n'êtes pas assez fatigué pour dormir.");
 
             return;
 
@@ -213,6 +226,7 @@ public class Window {
             this.playerPanel.setVisible(true);
             this.interfacePanel.setVisible(true);
 
+            this.infosUser.setVisible(false);
             this.actualizePlayerPanel();
         });
         this.window.add(this.validateSleepButton);
@@ -240,16 +254,14 @@ public class Window {
 
         this.eatButton = new Button("Manger", 240, 0, 100, 50, TEXT_FONT_SIZE);
         this.eatButton.addActionListener(e -> {
-            player.eat();
-            this.actualizePlayerPanel();
+            this.eat();
         });
         this.interfacePanel.add(this.eatButton);
         this.eatButton.setVisible(false);
 
         this.drinkButton = new Button("Boire", 360, 0, 100, 50, TEXT_FONT_SIZE);
         this.drinkButton.addActionListener(e -> {
-            player.drink();
-            this.actualizePlayerPanel();
+            this.drink();
         });
         this.interfacePanel.add(this.drinkButton);
         this.drinkButton.setVisible(false);
@@ -436,6 +448,12 @@ public class Window {
     }
 
     private void showTakeInterface() {
+//        if (!this.regionHasDog() && !this.regionHasAnimal() && !this.regionHasWater() && !this.regionHasBox()) {
+//            this.setInfosUserText("Il n'y a rien à prendre ici.");
+//            return;
+//        }
+        // TODO Afficher ça si il n'y a rien à prendre
+
         if (this.regionHasDog()) {
             this.tameButton.setVisible(true);
         }
@@ -549,6 +567,23 @@ public class Window {
         return regionPanel.get(player.getCurrentPosition()).containBox();
     }
 
+    private void eat() {
+        if (player.getHunger() < player.getMaxHunger()) {
+            player.eat();
+            this.actualizePlayerPanel();
+        } else {
+            this.setInfosUserText("Vous n'avez pas faim.");
+        }
+    }
+    private void drink() {
+        if (player.getThirst() < player.getMaxThirst()) {
+            player.drink();
+            this.actualizePlayerPanel();
+        } else {
+            this.setInfosUserText("Vous n'avez pas soif.");
+        }
+    }
+
     private void tame() {
         if (regionHasDog()) {
             int tame = random.nextInt(100);
@@ -583,9 +618,6 @@ public class Window {
         } else if (result == HuntResult.RIPOSTE) {
             player.setHealth(player.getHealth() - Bear.getAttack());
             this.checkAlive();
-        } else if (result == HuntResult.NO_ANIMAL) {
-            // TODO Print on menu
-            System.out.println("DEBUG: No bear");
         }
         this.showHuntInterface();
     }
@@ -603,9 +635,6 @@ public class Window {
         } else if (result == HuntResult.RIPOSTE) {
             player.setHealth(player.getHealth() - Dog.getAttack());
             this.checkAlive();
-        } else if (result == HuntResult.NO_ANIMAL) {
-            // TODO Print on menu
-            System.out.println("DEBUG: No dog");
         }
         this.showHuntInterface();
     }
@@ -623,9 +652,6 @@ public class Window {
         } else if (result == HuntResult.RIPOSTE) {
             player.setHealth(player.getHealth() - Deer.getAttack());
             this.checkAlive();
-        } else if (result == HuntResult.NO_ANIMAL) {
-            // TODO Print on menu
-            System.out.println("DEBUG: No deer");
         }
         this.showHuntInterface();
     }
@@ -653,12 +679,15 @@ public class Window {
     }
 
     private void move(Direction direction) {
+        this.infosUser.setVisible(false);
         int position = player.getCurrentPosition();
         if (player.move(direction)) {
             regionPanel.get(position).remove(player);
             regionPanel.get(position).repaint();
             regionPanel.get(player.getCurrentPosition()).add(player);
             regionPanel.get(player.getCurrentPosition()).repaint();
+        } else if (player.getStamina() == 0) {
+            this.setInfosUserText("Vous êtes trop fatigué pour vous déplacer !");
         }
         this.showMainInterface();
         this.actualizePlayerPanel();
@@ -710,6 +739,12 @@ public class Window {
 
         this.sleepTimeLabel.setText(String.valueOf(this.sleepTime));
         this.sleepTimeLabel.update(this.sleepTimeLabel.getGraphics());
+    }
+
+    private void setInfosUserText(String text) {
+        this.infosUser.setText(text);
+        this.infosUser.setVisible(true);
+        this.actualizePlayerPanel();
     }
 
     // GETTERS
