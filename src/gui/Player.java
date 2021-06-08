@@ -175,9 +175,6 @@ public class Player extends JPanel {
         }
     }
 
-    public void hunt() {
-
-    }
     public void takeWater() {
         if (this.stamina > 0) {
             this.water += 10;
@@ -239,5 +236,10 @@ public class Player extends JPanel {
     public int getCurrentPosition() {
         return this.currentPosition;
     }
+
+    // SETTERS
+
+    public void setHealth(int health) { this.health = health; }
+    public void setFood(int food) { this.food = food; }
 
 }

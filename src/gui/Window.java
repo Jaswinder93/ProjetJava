@@ -336,22 +336,18 @@ public class Window {
 
         this.northButton = this.initializeCompassButton("N", 0, 15, BorderLayout.NORTH);
         this.northButton.addActionListener(e -> {
-//            System.out.println("DEBUG: [Window.java] => NORTH");
             this.move(Direction.NORTH);
         });
         this.eastButton = this.initializeCompassButton("E", 50, 0, BorderLayout.EAST);
         this.eastButton.addActionListener(e -> {
-//            System.out.println("DEBUG: [Window.java] => EAST");
             this.move(Direction.EAST);
         });
         this.southButton = this.initializeCompassButton("S", 0, 15, BorderLayout.SOUTH);
         this.southButton.addActionListener(e -> {
-//            System.out.println("DEBUG: [Window.java] => SOUTH");
             this.move(Direction.SOUTH);
         });
         this.westButton = this.initializeCompassButton("W", 50, 0, BorderLayout.WEST);
         this.westButton.addActionListener(e -> {
-//            System.out.println("DEBUG: [Window.java] => WEST");
             this.move(Direction.WEST);
         });
     }
@@ -369,7 +365,6 @@ public class Window {
             int position;
             do {
                 position = random.nextInt(11);
-//                System.out.println("DEBUG: Box created at position " + position);
             } while (this.boxLocalization.get(position) != null);
             Box box = new Box(100, Type.MAGIC, "MAGIC BOX");
             regionPanel.get(position).addBox(box);
@@ -381,7 +376,6 @@ public class Window {
             int position;
             do {
                 position = random.nextInt(11);
-//                System.out.println("DEBUG: Box created at position " + position);
             } while (this.boxLocalization.get(position) != null);
             Box box = new Box(100, Type.POISON, "POISON BOX");
             regionPanel.get(position).addBox(box);
@@ -398,7 +392,6 @@ public class Window {
                 int bearQuantity = random.nextInt(2);
                 for (int i = 0; i < bearQuantity; i++) {
                     region.addAnimal(new Bear());
-//                    System.out.println("DEBUG: Add bear at position: " + region.getName());
                 }
             }
 
@@ -408,7 +401,6 @@ public class Window {
                 int dogQuantity = random.nextInt(3);
                 for (int i = 0; i < dogQuantity; i++) {
                     region.addAnimal(new Dog());
-//                    System.out.println("DEBUG: Add dog at position: " + region.getName());
                 }
             }
 
@@ -418,7 +410,6 @@ public class Window {
                 int deerQuantity = random.nextInt(4);
                 for (int i = 0; i < deerQuantity; i++) {
                     region.addAnimal(new Deer());
-//                    System.out.println("DEBUG: Add deer at position: " + region.getName());
                 }
             }
 
@@ -426,7 +417,6 @@ public class Window {
     }
 
     private void showMainInterface() {
-        System.out.println("Show main interface");
         this.mainMenuButton.setVisible(true);
         this.sleepButton.setVisible(true);
         this.eatButton.setVisible(true);
@@ -444,7 +434,6 @@ public class Window {
     }
 
     private void showTakeInterface() {
-        System.out.println("Show take interface");
         if (this.regionHasDog()) {
             this.tameButton.setVisible(true);
         }
@@ -489,13 +478,45 @@ public class Window {
     }
     private void showHuntInterface() {
         this.showAnimalInterface();
+
+        // Bear
+        for (ActionListener al : this.bearButton.getActionListeners()) {
+            this.bearButton.removeActionListener(al);
+        }
+        this.bearButton.addActionListener(e -> {
+            this.killBear();
+            this.actualizePlayerPanel();
+        });
+
+        // Dog
+        for (ActionListener al : this.dogButton.getActionListeners()) {
+            this.dogButton.removeActionListener(al);
+        }
+        this.dogButton.addActionListener(e -> {
+            this.killDog();
+            this.actualizePlayerPanel();
+        });
+
+        // Deer
+        for (ActionListener al : this.deerButton.getActionListeners()) {
+            this.deerButton.removeActionListener(al);
+        }
+        this.deerButton.addActionListener(e -> {
+            this.killDeer();
+            this.actualizePlayerPanel();
+        });
     }
     private void showAnimalInterface() {
-        System.out.println("Show animal interface");
-        this.bearButton.setVisible(true);
-        this.dogButton.setVisible(true);
-        this.deerButton.setVisible(true);
-        this.returnButton.setVisible(true);
+        if (this.regionHasBear()) {
+            this.bearButton.setVisible(true);
+        }
+        if (this.regionHasDog()) {
+            this.dogButton.setVisible(true);
+        }
+        if (this.regionHasDeer()) {
+            this.deerButton.setVisible(true);
+        }
+
         for (ActionListener al : this.returnButton.getActionListeners()) {
             this.returnButton.removeActionListener(al);
         }
@@ -503,6 +524,7 @@ public class Window {
             this.hideAnimalInterface();
             this.showTakeInterface();
         });
+        this.returnButton.setVisible(true);
         this.interfacePanel.update(this.interfacePanel.getGraphics());
     }
     private void hideAnimalInterface() {
@@ -517,9 +539,11 @@ public class Window {
         }
     }
 
+    private boolean regionHasBear() { return this.getNbBears() > 0; }
     private boolean regionHasDog() {
         return this.getNbDogs() > 0;
     }
+    private boolean regionHasDeer() { return this.getNbDeers() > 0; }
     private boolean regionHasAnimal() {
         return this.getNbBears() > 0 || this.getNbDogs() > 0 ||this.getNbDeers() > 0;
     }
@@ -528,6 +552,46 @@ public class Window {
     }
     private boolean regionHasBox() {
         return regionPanel.get(player.getCurrentPosition()).containBox();
+    }
+
+    private void killBear() {
+        HuntResult result = regionPanel.get(player.getCurrentPosition()).killBear();
+        if (result == HuntResult.KILL) {
+            player.setFood(player.getFood() + Bear.getFood());
+        } else if (result == HuntResult.RIPOSTE) {
+            player.setHealth(player.getHealth() - Bear.getAttack());
+            // TODO Check if dead
+        } else if (result == HuntResult.NO_ANIMAL) {
+            // TODO Print on menu
+            System.out.println("DEBUG: No bear");
+        }
+        this.showAnimalInterface();
+    }
+    private void killDog() {
+        HuntResult result = regionPanel.get(player.getCurrentPosition()).killDog();
+        if (result == HuntResult.KILL) {
+            player.setFood(player.getFood() + Dog.getFood());
+        } else if (result == HuntResult.RIPOSTE) {
+            player.setHealth(player.getHealth() - Dog.getAttack());
+            // TODO Check if dead
+        } else if (result == HuntResult.NO_ANIMAL) {
+            // TODO Print on menu
+            System.out.println("DEBUG: No dog");
+        }
+        this.showAnimalInterface();
+    }
+    private void killDeer() {
+        HuntResult result = regionPanel.get(player.getCurrentPosition()).killDeer();
+        if (result == HuntResult.KILL) {
+            player.setFood(player.getFood() + Deer.getFood());
+        } else if (result == HuntResult.RIPOSTE) {
+            player.setHealth(player.getHealth() - Deer.getAttack());
+            // TODO Check if dead
+        } else if (result == HuntResult.NO_ANIMAL) {
+            // TODO Print on menu
+            System.out.println("DEBUG: No deer");
+        }
+        this.showAnimalInterface();
     }
 
     private int getNbBears() {

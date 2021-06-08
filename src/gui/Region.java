@@ -1,13 +1,25 @@
 package gui;
 
 import gui.animal.Animal;
+import gui.animal.Bear;
+import gui.animal.Deer;
+import gui.animal.Dog;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Random;
+
+enum HuntResult {
+    RIPOSTE,
+    KILL,
+    NO_ANIMAL
+}
 
 public class Region extends JPanel {
+
+    Random random = new Random();
 
     private Box box;
     private ArrayList<Animal> animals = new ArrayList<>();
@@ -50,10 +62,68 @@ public class Region extends JPanel {
         this.animals.add(animal);
     }
 
+    public HuntResult killBear() {
+        if (this.getNbBears() > 0) {
+            int riposte = random.nextInt(100);
+            if (riposte < Bear.getRiposteChance()) {
+                System.out.println("DEBUG: Bear riposte");
+                return HuntResult.RIPOSTE;
+            } else {
+                for (Animal animal : this.animals) {
+                    if (animal.getSpecies().equals("Bear")) {
+                        this.animals.remove(animal);
+                        return HuntResult.KILL;
+                    }
+                }
+                return HuntResult.NO_ANIMAL;
+            }
+        } else {
+            return HuntResult.NO_ANIMAL;
+        }
+    }
+    public HuntResult killDog() {
+        if (this.getNbDogs() > 0) {
+            int riposte = random.nextInt(100);
+            if (riposte < Dog.getRiposteChance()) {
+                System.out.println("DEBUG: Dog riposte");
+                return HuntResult.RIPOSTE;
+            } else {
+                for (Animal animal : this.animals) {
+                    if (animal.getSpecies().equals("Dog")) {
+                        this.animals.remove(animal);
+                        return HuntResult.KILL;
+                    }
+                }
+                return HuntResult.NO_ANIMAL;
+            }
+        } else {
+            return HuntResult.NO_ANIMAL;
+        }
+    }
+    public HuntResult killDeer() {
+        if (this.getNbDeers() > 0) {
+            int riposte = random.nextInt(100);
+            if (riposte < Deer.getRiposteChance()) {
+                System.out.println("DEBUG: Deer riposte");
+                return HuntResult.RIPOSTE;
+            } else {
+                for (Animal animal : this.animals) {
+                    if (animal.getSpecies().equals("Deer")) {
+                        this.animals.remove(animal);
+                        return HuntResult.KILL;
+                    }
+                }
+                return HuntResult.NO_ANIMAL;
+            }
+        } else {
+            return HuntResult.NO_ANIMAL;
+        }
+    }
+
     public int getNbBears() {
         int nb = 0;
-        for (Animal animal : animals) {
-            if (animal.getSpecie().equals("Bear")) {
+        for (Animal animal : this.animals) {
+            if (animal.getSpecies().equals("Bear")) {
                 nb += 1;
             }
         }
@@ -62,7 +132,7 @@ public class Region extends JPanel {
     public int getNbDogs() {
         int nb = 0;
         for (Animal animal : animals) {
-            if (animal.getSpecie().equals("Dog")) {
+            if (animal.getSpecies().equals("Dog")) {
                 nb += 1;
             }
         }
@@ -71,7 +141,7 @@ public class Region extends JPanel {
     public int getNbDeers() {
         int nb = 0;
         for (Animal animal : animals) {
-            if (animal.getSpecie().equals("Deer")) {
+            if (animal.getSpecies().equals("Deer")) {
                 nb += 1;
             }
         }
