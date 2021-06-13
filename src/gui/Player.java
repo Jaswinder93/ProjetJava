@@ -1,7 +1,11 @@
 package gui;
 
+import gui.animal.Bear;
+import gui.animal.Dog;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.Random;
 
 enum Direction {
     NORTH,
@@ -9,12 +13,18 @@ enum Direction {
     SOUTH,
     WEST
 }
+enum SleepState {
+    ATTACKED,
+    SLEEP
+}
 
 public class Player extends JPanel {
 
 //    private final ArrayList<Chien> chiens;
 //    private Chien chienAdoptableVoulu;
 //    private Chien chienLiberable;
+
+    Random random = new Random();
 
     // STATS
 
@@ -130,7 +140,10 @@ public class Player extends JPanel {
         }
     }
 
-    public void sleep(int time) {
+    public SleepState sleep(int time) {
+
+        float percentage = (Window.getCurrentRegion().getNbDogs() * Dog.getRiposteChance() + Window.getCurrentRegion().getNbBears() * Bear.getRiposteChance()) / 10f;
+
         for (int i = 0; i < time; i++) {
             this.stamina += 5;
             if (this.stamina > this.maxStamina) {
@@ -144,8 +157,18 @@ public class Player extends JPanel {
             if (this.thirst < 0) {
                 this.thirst = 0;
             }
-            // TODO For each hour can be attacked (%)
+
+            int value = random.nextInt(100);
+            if (value < percentage) {
+                this.health -= 20;
+                if (this.health < 0) {
+                    this.health = 0;
+                }
+                return SleepState.ATTACKED;
+            }
         }
+
+        return SleepState.SLEEP;
     }
     public void eat() {
         int quantity = this.maxHunger - this.hunger;

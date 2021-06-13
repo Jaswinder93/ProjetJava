@@ -190,8 +190,6 @@ public class Window {
             this.setInfosUserText("Vous n'êtes pas assez fatigué pour dormir.");
 
             return;
-
-            // TODO Add explanation text : "could not sleep when stamina = 100"
         }
 
         this.sleepLabel = new Label("Dormir: ", 360, 200, 600, 90, TITLE_FONT_SIZE);
@@ -213,21 +211,7 @@ public class Window {
 
         this.validateSleepButton = new Button("Dormir", 500, 380, 160, 50, MAIN_TEXT_FONT_SIZE);
         this.validateSleepButton.addActionListener(e -> {
-            player.sleep(this.sleepTime);
-            this.sleepTime = 0;
-            this.sleepLabel.setVisible(false);
-            this.sleepHLabel.setVisible(false);
-            this.sleepTimeLabel.setVisible(false);
-            this.previousButton.setVisible(false);
-            this.nextButton.setVisible(false);
-            this.validateSleepButton.setVisible(false);
-
-            this.mapPanel.setVisible(true);
-            this.playerPanel.setVisible(true);
-            this.interfacePanel.setVisible(true);
-
-            this.infosUser.setVisible(false);
-            this.actualizePlayerPanel();
+            this.sleep();
         });
         this.window.add(this.validateSleepButton);
     }
@@ -402,8 +386,8 @@ public class Window {
 
             // Bear
             int bearChance = random.nextInt(100);
-            if (bearChance < 30) {
-                int bearQuantity = random.nextInt(2);
+            if (bearChance < 50) {
+                int bearQuantity = random.nextInt(5);
                 for (int i = 0; i < bearQuantity; i++) {
                     region.addAnimal(new Bear());
                 }
@@ -411,8 +395,8 @@ public class Window {
 
             // Dogs
             int dogChance = random.nextInt(100);
-            if (dogChance < 50) {
-                int dogQuantity = random.nextInt(3);
+            if (dogChance < 70) {
+                int dogQuantity = random.nextInt(8);
                 for (int i = 0; i < dogQuantity; i++) {
                     region.addAnimal(new Dog());
                 }
@@ -421,7 +405,7 @@ public class Window {
             // Dogs
             int deerChance = random.nextInt(100);
             if (deerChance < 80) {
-                int deerQuantity = random.nextInt(4);
+                int deerQuantity = random.nextInt(10);
                 for (int i = 0; i < deerQuantity; i++) {
                     region.addAnimal(new Deer());
                 }
@@ -582,6 +566,24 @@ public class Window {
         } else {
             this.setInfosUserText("Vous n'avez pas soif.");
         }
+    }
+    private void sleep() {
+        this.infosUser.setVisible(false);
+        if (player.sleep(this.sleepTime) == SleepState.ATTACKED) {
+            this.setInfosUserText("Vous avez été attaqué pendant votre sommeil...");
+        }
+
+        this.sleepTime = 0;
+        this.sleepLabel.setVisible(false);
+        this.sleepHLabel.setVisible(false);
+        this.sleepTimeLabel.setVisible(false);
+        this.previousButton.setVisible(false);
+        this.nextButton.setVisible(false);
+        this.validateSleepButton.setVisible(false);
+
+        this.mapPanel.setVisible(true);
+        this.playerPanel.setVisible(true);
+        this.interfacePanel.setVisible(true);
     }
 
     private void tame() {
@@ -751,6 +753,9 @@ public class Window {
     
     public static Player getPlayer() {
         return player;
+    }
+    public static Region getCurrentRegion() {
+        return regionPanel.get(player.getCurrentPosition());
     }
 
 }

@@ -9,15 +9,13 @@ public abstract class Animal {
 
     private final String species;
     private final Role role;
-    private final boolean tamable;
 
 
     // CONSTRUCTORS
 
-    public Animal(String species, Role role, boolean tamable) {
+    public Animal(String species, Role role) {
         this.species = species;
         this.role = role;
-        this.tamable = tamable;
     }
 
     // METHODS
@@ -35,6 +33,5 @@ public abstract class Animal {
     public Role getRole() {
         return this.role;
     }
-    public boolean isTamable() { return this.tamable; }
 
 }
