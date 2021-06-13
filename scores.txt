@@ -1,0 +1,10 @@
+ -- Bérangère : 900
+ -- Toufik : 480
+ -- Jaswinder : 350
+ -- Thierry : 220
+ -- Tanguy : 200
+ -- Zineb : 190
+ -- Gauthier : 180
+ -- Aimen : 170
+ -- Mohammad : 50
+ -- Jennifer : 20
