@@ -789,7 +789,7 @@ public class Window {
     private void removeBox() {
         if (this.getBoxType() == Type.MAGIC) {
             this.setScore(200);
-            if (player.getNbMagicBox() == 1) {
+            if (player.getNbMagicBox() == 3) {
                 this.createWinScreen();
             }
         } else {

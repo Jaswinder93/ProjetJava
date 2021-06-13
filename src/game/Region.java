@@ -77,7 +77,6 @@ public class Region extends JPanel {
         if (this.getNbBears() > 0) {
             int riposte = random.nextInt(100);
             if (riposte < Bear.getRiposteChance()) {
-                System.out.println("DEBUG: Bear riposte");
                 return HuntResult.RIPOSTE;
             } else {
                 for (Animal animal : this.animals) {
@@ -96,7 +95,6 @@ public class Region extends JPanel {
         if (this.getNbDogs() > 0) {
             int riposte = random.nextInt(100);
             if (riposte < Dog.getRiposteChance()) {
-                System.out.println("DEBUG: Dog riposte");
                 return HuntResult.RIPOSTE;
             } else {
                 for (Animal animal : this.animals) {
@@ -115,7 +113,6 @@ public class Region extends JPanel {
         if (this.getNbDeers() > 0) {
             int riposte = random.nextInt(100);
             if (riposte < Deer.getRiposteChance()) {
-                System.out.println("DEBUG: Deer riposte");
                 return HuntResult.RIPOSTE;
             } else {
                 for (Animal animal : this.animals) {

@@ -1,10 +1,1 @@
- -- Bérangère : 666
- -- Toufik : 420
- -- Jaswinder : 404
- -- Thierry : 51
- -- Tanguy : 9999
- -- Zineb : 500
- -- Gauthier : 666
- -- Aimen-Allah_délégué_LSI2_EFREI : 503
- -- Mohammad : 0
- -- Jennifer : 1
+ -- Tanguy : 680

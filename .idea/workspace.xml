@@ -20,7 +20,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6f09b0c1-9b71-4a00-b9d6-e84b4fee9357" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/game/animal/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/animal/Animal.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Kanji.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Kanji/game/Region.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Kanji/game/Region.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Kanji/game/Window.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Kanji/game/Window.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Kanji/game/animal/Animal.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Kanji/game/animal/Animal.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Kanji/game/animal/Role.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scores.txt" beforeDir="false" afterPath="$PROJECT_DIR$/scores.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Region.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Region.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Window.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +57,17 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/game/Game.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/game/animal/Animal.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/game/Window.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/game/graphics/Panel.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/game/graphics/Label.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/game/Region.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/game/Box.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/game/Player.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/game/Text.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -182,7 +201,7 @@
       <workItem from="1623066594366" duration="7649000" />
       <workItem from="1623149905611" duration="12930000" />
       <workItem from="1623522727550" duration="4408000" />
-      <workItem from="1623571246463" duration="21015000" />
+      <workItem from="1623571246463" duration="21960000" />
     </task>
     <servers />
   </component>
