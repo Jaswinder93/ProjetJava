@@ -7,7 +7,7 @@ public class Deer extends Animal {
     private static int food;
 
     public Deer() {
-        super("Deer", Role.PREY);
+        super("Deer");
         Deer.riposteChance = 10;
         Deer.attack = 20;
         Deer.food = 20;

@@ -20,23 +20,19 @@ enum SleepState {
 
 public class Player extends JPanel {
 
-//    private final ArrayList<Chien> chiens;
-//    private Chien chienAdoptableVoulu;
-//    private Chien chienLiberable;
-
     Random random = new Random();
 
     // STATS
 
     private int health = 50;
-    private int maxHealth = 50;
+    private final int maxHealth = 50;
     private boolean alive = true;
     private int hunger = 100;
-    private int maxHunger = 100;
+    private final int maxHunger = 100;
     private int thirst = 100;
-    private int maxThirst = 100;
+    private final int maxThirst = 100;
     private int stamina = 100;
-    private int maxStamina = 100;
+    private final int maxStamina = 100;
     private int weight;
     private int maxWeight = 200;
     private int food = 20;
@@ -142,7 +138,7 @@ public class Player extends JPanel {
 
     public SleepState sleep(int time) {
 
-        float percentage = (Window.getCurrentRegion().getNbDogs() * Dog.getRiposteChance() + Window.getCurrentRegion().getNbBears() * Bear.getRiposteChance()) / 10f;
+        float percentage = (game.Window.getCurrentRegion().getNbDogs() * Dog.getRiposteChance() + Window.getCurrentRegion().getNbBears() * Bear.getRiposteChance()) / 10f;
 
         for (int i = 0; i < time; i++) {
             this.health += 5;
@@ -271,7 +267,5 @@ public class Player extends JPanel {
 
     public void setHealth(int health) { this.health = health; }
     public void setFood(int food) { this.food = food; }
-
-    public void setNbDogs(int dogs) { this.nbDogs = dogs; }
 
 }

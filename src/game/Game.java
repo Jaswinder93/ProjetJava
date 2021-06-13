@@ -1,6 +1,6 @@
 package game;
 
-public class Test {
+public class Game {
 
     public static void main(String[] args) {
         new Window();

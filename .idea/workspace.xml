@@ -20,82 +20,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6f09b0c1-9b71-4a00-b9d6-e84b4fee9357" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/scores.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/animal/AbstractAnimal.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/animal/Adoptable.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/animal/Animal.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/animal/Chasseur.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/animal/Chevre.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/animal/Chien.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/animal/Loup.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/gui/Box.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/gui/Button.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/gui/Direction.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/gui/HuntResult.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/gui/IdeesClasseASupprimer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/gui/Label.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/gui/Panel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/gui/Player$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/gui/Player.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/gui/Region.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/gui/SleepState.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/gui/Test.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/gui/Text.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/gui/Type.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/gui/Window.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/gui/animal/Animal.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/gui/animal/Bear.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/gui/animal/Deer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/gui/animal/Dog.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/gui/animal/Role.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/jeu/Aliment.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/jeu/AnalyseurSyntaxique.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/jeu/Commande.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/jeu/Container.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/jeu/Direction.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/jeu/EffetObjetKanji.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/jeu/Jeu.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/jeu/Joueur.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/jeu/Kanji.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/jeu/MotCleCommande.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/jeu/ObjetKanji.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/jeu/Piece.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kanji/jeu/TypeAliment.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/animal/AbstractAnimal.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/animal/Adoptable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/animal/Animal.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/animal/Chasseur.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/animal/Chevre.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/animal/Chien.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/animal/Loup.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/Box.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Box.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/Button.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Button.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/IdeesClasseASupprimer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/Label.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Label.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/Panel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Panel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/Region.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Region.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/Text.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Text.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Window.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/animal/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/animal/Animal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/animal/Bear.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/animal/Bear.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/animal/Deer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/animal/Deer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/animal/Dog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/animal/Dog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jeu/Aliment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jeu/AnalyseurSyntaxique.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jeu/Commande.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jeu/Container.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jeu/Direction.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jeu/EffetObjetKanji.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jeu/Jeu.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jeu/Joueur.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jeu/Kanji.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jeu/MotCleCommande.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jeu/ObjetKanji.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jeu/Piece.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jeu/TypeAliment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Kanji/game/Box.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Kanji/game/Box.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Kanji/game/Button.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Kanji/game/Label.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Kanji/game/Panel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Kanji/game/Player$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Kanji/game/Player$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Kanji/game/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Kanji/game/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Kanji/game/Region.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Kanji/game/Region.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Kanji/game/Test.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Kanji/game/Text.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Kanji/game/Text.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Kanji/game/Window.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Kanji/game/Window.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Kanji/game/animal/Animal.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Kanji/game/animal/Animal.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Kanji/game/animal/Bear.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Kanji/game/animal/Bear.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Kanji/game/animal/Deer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Kanji/game/animal/Deer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Kanji/game/animal/Dog.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Kanji/game/animal/Dog.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scores.txt" beforeDir="false" afterPath="$PROJECT_DIR$/scores.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Box.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Box.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Button.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/graphics/Button.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Label.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/graphics/Label.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Panel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/graphics/Panel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Region.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Region.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Text.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Text.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Window.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/animal/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/animal/Animal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/animal/Bear.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/animal/Bear.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/animal/Deer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/animal/Deer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/animal/Dog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/animal/Dog.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,7 +123,20 @@
       <recent name="C:\Users\tat\Documents\Efrei\Cours\S6\Java\Projet\Kanji\src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Test">
+  <component name="RunManager" selected="Application.Game">
+    <configuration name="Game" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="game.Game" />
+      <module name="Kanji" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="game.graphics.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="GameManager" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="gui.GameManager" />
       <module name="Kanji" />
@@ -181,19 +147,6 @@
     <configuration name="Kanji" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="jeu.Kanji" />
       <module name="Kanji" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="game.Test" />
-      <module name="Kanji" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="game.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -212,11 +165,11 @@
     <list>
       <item itemvalue="Application.GameManager" />
       <item itemvalue="Application.Kanji" />
-      <item itemvalue="Application.Test" />
+      <item itemvalue="Application.Game" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Test" />
+        <item itemvalue="Application.Game" />
         <item itemvalue="Application.Kanji" />
       </list>
     </recent_temporary>
@@ -257,7 +210,7 @@
       <workItem from="1623066594366" duration="7649000" />
       <workItem from="1623149905611" duration="12930000" />
       <workItem from="1623522727550" duration="4408000" />
-      <workItem from="1623571246463" duration="19583000" />
+      <workItem from="1623571246463" duration="20711000" />
     </task>
     <servers />
   </component>

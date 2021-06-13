@@ -1,4 +1,4 @@
-package game;
+package game.graphics;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;

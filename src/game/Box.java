@@ -7,18 +7,14 @@ enum Type {
 
 public class Box {
 
-    private final int WEIGHT;
     private final Type TYPE;
-    private final String NAME;
 
     private int currentPosition;
 
     // CONSTRUCTORS
 
-    public Box(int weight, Type type, String name) {
-        this.WEIGHT = weight;
+    public Box(Type type) {
         this.TYPE = type;
-        this.NAME = name;
     }
 
     // GETTERS

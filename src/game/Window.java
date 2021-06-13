@@ -3,6 +3,9 @@ package game;
 import game.animal.Bear;
 import game.animal.Deer;
 import game.animal.Dog;
+import game.graphics.Button;
+import game.graphics.Label;
+import game.graphics.Panel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -43,11 +46,8 @@ public class Window {
     private JButton mainMenuButton, sleepButton, eatButton, drinkButton, takeButton; // Main interface
     private JButton tameButton, huntButton, takeWaterButton, grabBoxButton, returnButton; // Take interface
     private JButton bearButton, dogButton, deerButton; // Tame & Hunt interface
-    private JButton northButton, eastButton, southButton, westButton; // Compass
-    private JLabel compassLabel;
     private JTextArea displayedText;
     private JButton nextTextButton;
-    private HashMap<Integer, Box> boxLocalization;
     private JTextArea infosUser;
 
     private final String FONT = "Book Antiqua";
@@ -64,7 +64,7 @@ public class Window {
 
     // WIN & DEATH SCREEN
 
-    private JLabel winLabel, deathLabel, scoreLabel;
+    private JLabel scoreLabel;
 
     // CONSTRUCTORS
 
@@ -92,17 +92,14 @@ public class Window {
         this.actualizePlayerPanel();
     }
 
-    // TODO button rejouer
-    // TODO zdsq / fleche
-
     private void createTitleScreen() {
         this.window.setSize(800, 600);
         this.window.setLocationRelativeTo(null);
 
-        this.titleLabel = new Label("Kanji", 320, 100, 200, 90, TITLE_FONT_SIZE);
+        this.titleLabel = new game.graphics.Label("Kanji", 320, 100, 200, 90, TITLE_FONT_SIZE);
         this.window.add(this.titleLabel);
 
-        this.usernameLabel = new Label("Username (sans espaces) :  ", 170, 350, 200, 30, TEXT_FONT_SIZE);
+        this.usernameLabel = new game.graphics.Label("Username (sans espaces) :  ", 170, 350, 200, 30, TEXT_FONT_SIZE);
         this.window.add(this.usernameLabel);
 
         this.usernameField = new JTextField();
@@ -115,13 +112,11 @@ public class Window {
         this.usernameField.setForeground(Color.WHITE);
         this.window.add(usernameField);
 
-        this.startButton = new Button("Jouer", 200, 400, 150, 50, MAIN_TEXT_FONT_SIZE);
-        this.startButton.addActionListener(e -> {
-            this.start();
-        });
+        this.startButton = new game.graphics.Button("Jouer", 200, 400, 150, 50, MAIN_TEXT_FONT_SIZE);
+        this.startButton.addActionListener(e -> this.start());
         this.window.add(this.startButton);
 
-        this.highScoreButton = new Button("High Scores", 360, 400, 250, 50, MAIN_TEXT_FONT_SIZE);
+        this.highScoreButton = new game.graphics.Button("High Scores", 360, 400, 250, 50, MAIN_TEXT_FONT_SIZE);
         this.highScoreButton.addActionListener(e -> {
             this.titleLabel.setVisible(false);
             this.usernameLabel.setVisible(false);
@@ -136,11 +131,11 @@ public class Window {
         this.window.setSize(800, 600);
         this.window.setLocationRelativeTo(null);
 
-        this.highScoreLabel = new Label("High Scores", 200, 80, 400, 90, TITLE_FONT_SIZE);
+        this.highScoreLabel = new game.graphics.Label("High Scores", 200, 80, 400, 90, TITLE_FONT_SIZE);
         this.window.add(this.highScoreLabel);
 
         this.highScoreText = new JTextArea(Text.HIGH_SCORES(sortByValue(Objects.requireNonNull(this.readFile()))));
-        this.highScoreText.setBounds(320, 200, 180, 220);
+        this.highScoreText.setBounds(280, 200, 500, 220);
         this.highScoreText.setFont(new Font(FONT, Font.PLAIN, TEXT_FONT_SIZE));
         this.highScoreText.setLineWrap(true);
         this.highScoreText.setWrapStyleWord(true);
@@ -149,7 +144,7 @@ public class Window {
         this.highScoreText.setForeground(Color.WHITE);
         this.window.add(this.highScoreText);
 
-        this.menuButton = new Button("Menu", 320, 420, 100, 20, TEXT_FONT_SIZE);
+        this.menuButton = new game.graphics.Button("Menu", 320, 420, 100, 20, TEXT_FONT_SIZE);
         this.menuButton.addActionListener(e -> {
             this.highScoreLabel.setVisible(false);
             this.highScoreText.setVisible(false);
@@ -169,11 +164,11 @@ public class Window {
         this.window.setSize(1200, 600);
         this.window.setLocationRelativeTo(null);
 
-        this.mapPanel = new Panel(50, 50, 800, 400, true);
+        this.mapPanel = new game.graphics.Panel(50, 50, 800, 400, true);
         this.mapPanel.setLayout(new GridLayout(3, 4));
         this.window.add(this.mapPanel);
 
-        this.playerPanel = new Panel(900, 50, 250, 480, true);
+        this.playerPanel = new game.graphics.Panel(900, 50, 250, 480, true);
         this.window.add(this.playerPanel);
 
         this.displayedText = new JTextArea(Text.WELCOME_STRING_1());
@@ -186,7 +181,7 @@ public class Window {
         this.displayedText.setForeground(Color.WHITE);
         this.playerPanel.add(this.displayedText);
 
-        this.nextTextButton = new Button("Suivant",200, 50, TEXT_FONT_SIZE);
+        this.nextTextButton = new game.graphics.Button("Suivant",200, 50, TEXT_FONT_SIZE);
         this.nextTextButton.addActionListener(e -> {
             this.displayedText.setText(Text.WELCOME_STRING_2());
             this.nextTextButton.setText("Commencer l'aventure");
@@ -199,11 +194,11 @@ public class Window {
         });
         this.playerPanel.add(this.nextTextButton);
 
-        this.interfacePanel = new Panel(50, 480, 800, 50, false);
+        this.interfacePanel = new game.graphics.Panel(50, 480, 800, 50, false);
         this.interfacePanel.setLayout(null);
         this.window.add(this.interfacePanel);
 
-        this.mainMenuButton = new Button("Menu", 0, 0, 100, 50, TEXT_FONT_SIZE);
+        this.mainMenuButton = new game.graphics.Button("Menu", 0, 0, 100, 50, TEXT_FONT_SIZE);
         this.mainMenuButton.addActionListener(e -> {
             this.mapPanel.setVisible(false);
             this.playerPanel.setVisible(false);
@@ -236,10 +231,10 @@ public class Window {
         this.window.setSize(800, 600);
         this.window.setLocationRelativeTo(null);
 
-        this.deathLabel = new Label("Vous êtes mort", 260, 220, 300, 90, MAIN_TEXT_FONT_SIZE);
-        this.window.add(this.deathLabel);
+        JLabel deathLabel = new Label("Vous êtes mort", 260, 220, 300, 90, MAIN_TEXT_FONT_SIZE);
+        this.window.add(deathLabel);
 
-        this.scoreLabel = new Label("Votre score: " + score, 340, 280, 300, 90, TEXT_FONT_SIZE);
+        this.scoreLabel = new game.graphics.Label("Votre score: " + score, 340, 280, 300, 90, TEXT_FONT_SIZE);
         this.window.add(this.scoreLabel);
     }
     private void createWinScreen() {
@@ -252,10 +247,10 @@ public class Window {
         this.window.setSize(800, 600);
         this.window.setLocationRelativeTo(null);
 
-        this.winLabel = new Label("Vous avez gagné !", 240, 220, 360, 90, MAIN_TEXT_FONT_SIZE);
-        this.window.add(this.winLabel);
+        JLabel winLabel = new Label("Vous avez gagné !", 240, 220, 360, 90, MAIN_TEXT_FONT_SIZE);
+        this.window.add(winLabel);
 
-        this.scoreLabel = new Label("Votre score: " + score, 340, 280, 300, 90, TEXT_FONT_SIZE);
+        this.scoreLabel = new game.graphics.Label("Votre score: " + score, 340, 280, 300, 90, TEXT_FONT_SIZE);
         this.window.add(this.scoreLabel);
 
     }
@@ -283,27 +278,25 @@ public class Window {
             return;
         }
 
-        this.sleepLabel = new Label("Dormir: ", 360, 200, 600, 90, TITLE_FONT_SIZE);
+        this.sleepLabel = new game.graphics.Label("Dormir: ", 360, 200, 600, 90, TITLE_FONT_SIZE);
         this.window.add(this.sleepLabel);
 
-        this.sleepHLabel = new Label("h", 660, 200, 100, 90, TITLE_FONT_SIZE);
+        this.sleepHLabel = new game.graphics.Label("h", 660, 200, 100, 90, TITLE_FONT_SIZE);
         this.window.add(this.sleepHLabel);
 
         this.sleepTimeLabel = new Label(String.valueOf(this.sleepTime), 620, 200, 100, 90, TITLE_FONT_SIZE);
         this.window.add(this.sleepTimeLabel);
 
-        this.previousButton = new Button("<", 500, 300, 80, 50, MAIN_TEXT_FONT_SIZE);
+        this.previousButton = new game.graphics.Button("<", 500, 300, 80, 50, MAIN_TEXT_FONT_SIZE);
         this.previousButton.addActionListener(e -> this.removeOneHour());
         this.window.add(this.previousButton);
 
-        this.nextButton = new Button(">", 600, 300, 80, 50, MAIN_TEXT_FONT_SIZE);
+        this.nextButton = new game.graphics.Button(">", 600, 300, 80, 50, MAIN_TEXT_FONT_SIZE);
         this.nextButton.addActionListener(e -> this.addOneHour());
         this.window.add(this.nextButton);
 
-        this.validateSleepButton = new Button("Dormir", 500, 380, 160, 50, MAIN_TEXT_FONT_SIZE);
-        this.validateSleepButton.addActionListener(e -> {
-            this.sleep();
-        });
+        this.validateSleepButton = new game.graphics.Button("Dormir", 500, 380, 160, 50, MAIN_TEXT_FONT_SIZE);
+        this.validateSleepButton.addActionListener(e -> this.sleep());
         this.window.add(this.validateSleepButton);
     }
 
@@ -311,13 +304,13 @@ public class Window {
         this.initializeMainInterfaceButtons();
         this.initializeTakeInterfaceButtons();
         this.initializeAnimalInterfaceButtons();
-        this.returnButton = new Button("Retour", 480, 0, 100, 50, TEXT_FONT_SIZE);
+        this.returnButton = new game.graphics.Button("Retour", 480, 0, 100, 50, TEXT_FONT_SIZE);
         this.returnButton.setVisible(false);
         this.interfacePanel.add(this.returnButton);
         this.interfacePanel.update(this.interfacePanel.getGraphics());
     }
     private void initializeMainInterfaceButtons() {
-        this.sleepButton = new Button("Dormir" , 120, 0, 100, 50, TEXT_FONT_SIZE);
+        this.sleepButton = new game.graphics.Button("Dormir" , 120, 0, 100, 50, TEXT_FONT_SIZE);
         this.sleepButton.addActionListener(e -> {
             this.mapPanel.setVisible(false);
             this.playerPanel.setVisible(false);
@@ -327,21 +320,17 @@ public class Window {
         this.interfacePanel.add(this.sleepButton);
         this.sleepButton.setVisible(false);
 
-        this.eatButton = new Button("Manger", 240, 0, 100, 50, TEXT_FONT_SIZE);
-        this.eatButton.addActionListener(e -> {
-            this.eat();
-        });
+        this.eatButton = new game.graphics.Button("Manger", 240, 0, 100, 50, TEXT_FONT_SIZE);
+        this.eatButton.addActionListener(e -> this.eat());
         this.interfacePanel.add(this.eatButton);
         this.eatButton.setVisible(false);
 
-        this.drinkButton = new Button("Boire", 360, 0, 100, 50, TEXT_FONT_SIZE);
-        this.drinkButton.addActionListener(e -> {
-            this.drink();
-        });
+        this.drinkButton = new game.graphics.Button("Boire", 360, 0, 100, 50, TEXT_FONT_SIZE);
+        this.drinkButton.addActionListener(e -> this.drink());
         this.interfacePanel.add(this.drinkButton);
         this.drinkButton.setVisible(false);
 
-        this.takeButton = new Button("Prendre", 480, 0, 100, 50, TEXT_FONT_SIZE);
+        this.takeButton = new game.graphics.Button("Prendre", 480, 0, 100, 50, TEXT_FONT_SIZE);
         this.takeButton.addActionListener(e -> {
             this.hideMainInterface();
             this.showTakeInterface();
@@ -350,14 +339,12 @@ public class Window {
         this.takeButton.setVisible(false);
     }
     private void initializeTakeInterfaceButtons() {
-        this.tameButton = new Button("Dresser", 0, 0, 100, 50, TEXT_FONT_SIZE);
-        this.tameButton.addActionListener(e -> {
-            this.tame();
-        });
+        this.tameButton = new game.graphics.Button("Dresser", 0, 0, 100, 50, TEXT_FONT_SIZE);
+        this.tameButton.addActionListener(e -> this.tame());
         this.interfacePanel.add(this.tameButton);
         this.tameButton.setVisible(false);
 
-        this.huntButton = new Button("Chasser", 120, 0, 100, 50, TEXT_FONT_SIZE);
+        this.huntButton = new game.graphics.Button("Chasser", 120, 0, 100, 50, TEXT_FONT_SIZE);
         this.huntButton.addActionListener(e -> {
             this.hideTakeInterface();
             this.showHuntInterface();
@@ -365,30 +352,26 @@ public class Window {
         this.interfacePanel.add(this.huntButton);
         this.huntButton.setVisible(false);
 
-        this.takeWaterButton = new Button("Prendre eau", 240, 0, 100, 50, TEXT_FONT_SIZE);
-        this.takeWaterButton.addActionListener(e -> {
-            this.takeWater();
-        });
+        this.takeWaterButton = new game.graphics.Button("Prendre eau", 240, 0, 100, 50, TEXT_FONT_SIZE);
+        this.takeWaterButton.addActionListener(e -> this.takeWater());
         this.interfacePanel.add(this.takeWaterButton);
         this.takeWaterButton.setVisible(false);
 
-        this.grabBoxButton = new Button("Prendre boite", 360, 0, 100, 50, TEXT_FONT_SIZE);
-        this.grabBoxButton.addActionListener(e -> {
-            this.grabBox();
-        });
+        this.grabBoxButton = new game.graphics.Button("Prendre boite", 360, 0, 100, 50, TEXT_FONT_SIZE);
+        this.grabBoxButton.addActionListener(e -> this.grabBox());
         this.interfacePanel.add(this.grabBoxButton);
         this.grabBoxButton.setVisible(false);
     }
     private void initializeAnimalInterfaceButtons() {
-        this.bearButton = new Button("Ours", 120, 0, 100, 50, TEXT_FONT_SIZE);
+        this.bearButton = new game.graphics.Button("Ours", 120, 0, 100, 50, TEXT_FONT_SIZE);
         this.interfacePanel.add(this.bearButton);
         this.bearButton.setVisible(false);
 
-        this.dogButton = new Button("Chien", 240, 0, 100, 50, TEXT_FONT_SIZE);
+        this.dogButton = new game.graphics.Button("Chien", 240, 0, 100, 50, TEXT_FONT_SIZE);
         this.interfacePanel.add(this.dogButton);
         this.dogButton.setVisible(false);
 
-        this.deerButton = new Button("Cerf", 360, 0, 100, 50, TEXT_FONT_SIZE);
+        this.deerButton = new game.graphics.Button("Cerf", 360, 0, 100, 50, TEXT_FONT_SIZE);
         this.interfacePanel.add(this.deerButton);
         this.deerButton.setVisible(false);
     }
@@ -416,26 +399,18 @@ public class Window {
         }
     }
     private void initializeCompassPanel() {
-        this.compassLabel = new JLabel("BOUSSOLE");
-        this.compassLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        this.compassPanel.add(this.compassLabel, BorderLayout.CENTER);
+        JLabel compassLabel = new JLabel("BOUSSOLE");
+        compassLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        this.compassPanel.add(compassLabel, BorderLayout.CENTER);
 
-        this.northButton = this.initializeCompassButton("N", 0, 15, BorderLayout.NORTH);
-        this.northButton.addActionListener(e -> {
-            this.move(Direction.NORTH);
-        });
-        this.eastButton = this.initializeCompassButton("E", 50, 0, BorderLayout.EAST);
-        this.eastButton.addActionListener(e -> {
-            this.move(Direction.EAST);
-        });
-        this.southButton = this.initializeCompassButton("S", 0, 15, BorderLayout.SOUTH);
-        this.southButton.addActionListener(e -> {
-            this.move(Direction.SOUTH);
-        });
-        this.westButton = this.initializeCompassButton("W", 50, 0, BorderLayout.WEST);
-        this.westButton.addActionListener(e -> {
-            this.move(Direction.WEST);
-        });
+        JButton northButton = this.initializeCompassButton("N", 0, 15, BorderLayout.NORTH);
+        northButton.addActionListener(e -> this.move(Direction.NORTH));
+        JButton eastButton = this.initializeCompassButton("E", 50, 0, BorderLayout.EAST);
+        eastButton.addActionListener(e -> this.move(Direction.EAST));
+        JButton southButton = this.initializeCompassButton("S", 0, 15, BorderLayout.SOUTH);
+        southButton.addActionListener(e -> this.move(Direction.SOUTH));
+        JButton westButton = this.initializeCompassButton("W", 50, 0, BorderLayout.WEST);
+        westButton.addActionListener(e -> this.move(Direction.WEST));
     }
     private JButton initializeCompassButton(String text, int width, int height, String borderLayout) {
         JButton button = new Button(text, width, height, SMALL_TEXT_FONT_SIZE);
@@ -444,17 +419,17 @@ public class Window {
         return button;
     }
     private void initializeBoxes() {
-        this.boxLocalization = new HashMap<>();
+        HashMap<Integer, Box> boxLocalization = new HashMap<>();
 
         // Magic Boxes
         for (int i = 0; i < 3; i++) {
             int position;
             do {
                 position = random.nextInt(11);
-            } while (this.boxLocalization.get(position) != null);
-            Box box = new Box(100, Type.MAGIC, "MAGIC BOX");
+            } while (boxLocalization.get(position) != null);
+            Box box = new Box(Type.MAGIC);
             regionPanel.get(position).addBox(box);
-            this.boxLocalization.put(position, box);
+            boxLocalization.put(position, box);
         }
 
         // Poison Boxes
@@ -462,10 +437,10 @@ public class Window {
             int position;
             do {
                 position = random.nextInt(11);
-            } while (this.boxLocalization.get(position) != null);
-            Box box = new Box(100, Type.POISON, "POISON BOX");
+            } while (boxLocalization.get(position) != null);
+            Box box = new Box(Type.POISON);
             regionPanel.get(position).addBox(box);
-            this.boxLocalization.put(position, box);
+            boxLocalization.put(position, box);
         }
 
     }

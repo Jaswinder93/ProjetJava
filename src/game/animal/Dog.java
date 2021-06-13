@@ -7,7 +7,7 @@ public class Dog extends Animal {
     private static int food;
 
     public Dog() {
-        super("Dog", Role.PREDATOR);
+        super("Dog");
         Dog.riposteChance = 30;
         Dog.attack = 20;
         Dog.food = 50;

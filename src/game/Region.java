@@ -22,7 +22,7 @@ public class Region extends JPanel {
     Random random = new Random();
 
     private Box box;
-    private ArrayList<Animal> animals = new ArrayList<>();
+    private final ArrayList<Animal> animals = new ArrayList<>();
 
     // CONSTRUCTORS
 

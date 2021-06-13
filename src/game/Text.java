@@ -46,11 +46,11 @@ public class Text {
     }
 
     public static String HIGH_SCORES(HashMap<String, Integer> mapScore) {
-        String str = "";
+        StringBuilder str = new StringBuilder();
         for (Map.Entry<String, Integer> a : mapScore.entrySet()) {
-            str += " # " + a.getKey() + " => " + a.getValue() + "\n";
+            str.append(" # ").append(a.getKey()).append(" => ").append(a.getValue()).append("\n");
         }
-        return str;
+        return str.toString();
     }
 
 }
